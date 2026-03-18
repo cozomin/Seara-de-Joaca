@@ -1,0 +1,70 @@
+:root {
+    --spatiere-laterala: 5vw;
+    --grid-gap: 25px;
+    --padding-text: 25px;
+}
+
+@media screen and (max-width: 1000px) {
+    :root {
+        --spatiere-laterala: 4vw;
+        --grid-gap: 15px;
+        --padding-text: 18px;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    :root {
+        --spatiere-laterala: 10px;
+        --grid-gap: 10px;
+        --padding-text: 12px;
+    }
+}
+
+body {
+    padding: 20px var(--spatiere-laterala);
+    box-sizing: border-box;
+}
+
+#grid-pagina {
+    gap: var(--grid-gap);
+}
+
+#antet, #subsol, #grid-pagina > * {
+    padding: var(--padding-text);
+    border: 2px solid var(--culoare_contur);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#grid-pagina > * {
+    background-color: #ffffff;
+}
+
+#antet, #subsol {
+    background-color: #3B51A5;
+    color: white;
+    margin-bottom: var(--grid-gap);
+}
+
+#subsol {
+    margin-top: var(--grid-gap);
+    margin-bottom: 0;
+}
+
+img, picture, object, iframe, video {
+    width: 100%;
+    max-width: 800px;
+    min-width: 250px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 700px) {
+    img, picture, object, iframe, video {
+        min-width: 150px;
+        max-width: 100%;
+    }
+}

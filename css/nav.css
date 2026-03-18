@@ -1,0 +1,121 @@
+nav {
+    --nav-bg: #3B51A5;
+    --buton-bg: #E6EDF2;
+    --buton-text: #1A254B;
+    --buton-hover-bg: #FFCD00;
+    --buton-contur: #74B2E4;
+
+    --latime-buton: 170px;
+    --inaltime-buton: 45px;
+
+    background-color: var(--buton-contur);
+    width: 100%;
+}
+
+ul.meniu, ul.meniu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#hamburger, #ch-menu {
+    display: none;
+}
+
+.text-icon, .imag-icon {
+    display: inline-block;
+}
+
+ul.meniu {
+    display: flex;
+    position: relative;
+}
+
+ul.meniu ul {
+    display: none;
+    animation: animatie_submeniu 0.3s linear;
+    transform-origin: center top;
+}
+
+@keyframes animatie_submeniu {
+    0% {
+        opacity: 0;
+        transform: scale(0,0);
+    }
+    50% {
+        transform: scale(0.5,1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+
+ul.meniu > li:hover > ul {
+    display: block;
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+ul.meniu ul li:hover > ul {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
+ul.meniu li {
+    cursor: pointer;
+    position: relative;
+    width: var(--latime-buton);
+    height: var(--inaltime-buton);
+    background-color: var(--buton-bg);
+    border: 1px solid var(--buton-contur);
+    color: var(--buton-text);
+    text-align: center;
+    line-height: var(--inaltime-buton);
+    transition: all 0.3s linear;
+}
+
+ul.meniu a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+}
+
+ul.meniu li:hover {
+    background-color: var(--buton-hover-bg);
+    color: var(--nav-bg);
+    border-color: var(--buton-hover-bg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/*@media screen and (max-width: 700px) {*/
+/*    ul.meniu {*/
+/*        flex-direction: column;*/
+/*        align-items: stretch;*/
+/*    }*/
+
+/*    ul.meniu li {*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    ul.meniu ul {*/
+/*        position: static;*/
+/*        display: none;*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    ul.meniu > li:hover > ul,*/
+/*    ul.meniu ul li:hover > ul {*/
+/*        display: block;*/
+/*        position: static;*/
+/*        padding-left: 15px;*/
+/*    }*/
+/*}*/
