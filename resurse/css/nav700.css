@@ -1,0 +1,126 @@
+/*nav700{*/
+/*    --latime-buton: 120px;*/
+/*    --inaltime-buton: 40px;*/
+/*    background-color: var(--culoare_contur);*/
+/*}*/
+
+
+#piclogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*margin: 1em;*/
+}
+
+#piclogo img{
+    width: 5em;
+    height: auto;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#hamburger{
+    display: block;
+}
+
+#hamburger > img{
+    height: 3em;
+    /* em e relativ la marimea containerului */
+    width: auto;
+
+}
+
+ul.meniu{
+    display: none;
+    /*clip-path: inset(10 100% 100% 10);*/
+    /*transition: clip-path 0.4s ease-in-out;*/
+}
+
+ul.meniu ul{
+    animation: animatie_submeniu 0.4s linear;
+    transform-origin: center top;
+}
+
+#ch-menu:checked + ul.meniu{
+    display: flex;
+    /*position: relative;*/
+    /*top: 0;*/
+    justify-content: center;
+    align-items: center;
+    /*flex-grow: inherit;*/
+    width: 100%;
+    /*animation: animatie_submeniu 0.4s linear;*/
+    transform-origin: top left;
+
+    animation: animatie_meniu_colt 1s linear forwards;
+}
+
+ul.meniu > li  li:hover *::before{
+    animation: none !important;
+    /*transition: none !important;*/
+    content: " " !important;
+}
+
+ul.meniu  ul li:hover > ul{
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 100% !important;
+}
+
+ul.meniu ul{
+    width:100%;
+}
+
+#antet{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+li a{
+    font-size: 0.8em;
+}
+
+ul.meniu li{
+    transition: box-shadow 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+    box-shadow: inset 0 0 0 rgba(0,0,0,0);
+}
+
+ul.meniu li:hover{
+    box-shadow: inset 0 0 15px rgb(51, 89, 243);
+}
+
+@keyframes animatie_submeniu {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    50% {
+        transform: scaleY(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes animatie_meniu_colt {
+    0% {
+        /* Dreptunghiul este restrâns în colțul stânga-sus, cu marginile tale de 10px */
+        /*clip-path: inset(10px 100% 100% 10px);*/
+        scale: 0;
+    }
+    100% {
+        /* Meniul este complet extins */
+        /*clip-path: inset(10px 10px 10px 10px);*/
+        scale: 100%;
+    }
+
+}

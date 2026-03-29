@@ -1,0 +1,105 @@
+
+$bar-width: 35px;
+$bar-height: 4px;
+$bar-spacing: 10px;
+$t: 300ms;
+
+#hamburger{
+    display: none;
+    position: relative;
+    width: $bar-width;
+
+    height: ($bar-height * 3) + ($bar-spacing * 2);
+    cursor: pointer;
+
+    margin: 10px;
+
+    .bar {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: $bar-height;
+        background-color: transparent;
+        border-radius: 4px;
+        opacity: 0;
+    }
+
+
+    #bar-1 { top: 0; }
+    #bar-2 { top: $bar-height + $bar-spacing; }
+    #bar-3 { top: ($bar-height + $bar-spacing) * 2; }
+}
+
+@media (max-width: 700px) {
+    #hamburger {
+        display: block;
+
+        //.bar {
+        //    animation: appearAnimation 1s ease-out forwards !important;
+        //}
+
+        @for $i from 1 through 3 {
+            #bar-#{$i} {
+                animation-delay: ($i - 1) * $t;
+                animation-name: appearAnimation#{$i};
+                animation-duration:1s;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode:forwards;
+            }
+        }
+    }
+}
+
+@keyframes appearAnimation1 {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px) scale(0.5);
+        background-color: #7eff47;
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(5px) scale(1.5);
+        background-color: #ffb01e;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        background-color: #2f3542;
+    }
+}
+
+@keyframes appearAnimation2 {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px) scale(0.5);
+        background-color: #ff4757;
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(5px) scale(1.5);
+        background-color: #1e90ff;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        background-color: #2f3542;
+    }
+}
+
+@keyframes appearAnimation3 {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px) scale(0.5);
+        background-color: #5205b1;
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(5px) scale(1.5);
+        background-color: #830f8c;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        background-color: #2f3542;
+    }
+}

@@ -1,0 +1,176 @@
+$nav-bg: #3B51A5;
+$buton-bg: #E6EDF2;
+$buton-text: #1A254B;
+$buton-hover-text: #3359f3;
+$buton-hover-bg: #FFCD00;
+$buton-contur: #74B2E4;
+
+//$latime-buton: 170px;
+//$inaltime-buton: 45px;
+
+$latime-buton: 12em;
+$inaltime-buton: 3em;
+
+#logo{
+    order: 1;
+}
+
+#nume{
+    order: 2;
+}
+
+nav {
+    order: 3;
+    background-color: $buton-contur;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+ul.meniu, ul.meniu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+ul.meniu {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    ul {
+        display: none;
+        animation: animatie_submeniu 0.4s linear;
+        transform-origin: center top;
+
+        li:hover > ul {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 100%;
+        }
+    }
+
+    li {
+        cursor: pointer;
+        position: relative;
+        width: $latime-buton;
+        height: $inaltime-buton;
+        background-color: $buton-bg;
+        border: 1px solid $buton-contur;
+        color: $buton-text;
+        text-align: center;
+        line-height: $inaltime-buton;
+        transition: box-shadow 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+        box-shadow: inset 0 0 0 rgba(0,0,0,0);
+
+        li{
+            text-align: left;
+        }
+    }
+
+    > li:hover {
+        background-color: $buton-hover-bg;
+        color: $nav-bg;
+        border-color: $buton-hover-bg;
+        box-shadow: inset 0 0 15px rgb(51, 89, 243);
+
+        li a:hover::before{
+            //display: inline-block;
+            //position: absolute;
+            //content: "→";
+            //left: 0;
+            //opacity: 1;
+
+            animation: animatie_sageti 0.4s ease-in-out forwards;
+
+        }
+
+        li a::before{
+            content: '→';
+            position: absolute;
+            left: -10px;
+            opacity: 0;
+            //transition: left 0.4s ease, opacity 0.3s ease;
+        }
+    }
+
+    > li:hover > ul {
+        display: block;
+        position: absolute;
+        z-index: 100;
+        top: 100%;
+        left: 0;
+        width: 100%;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        font-weight: bold;
+        padding-left: 15px;
+
+        &:hover{
+            color: $buton-hover-text !important;
+        }
+    }
+
+
+
+}
+
+#hamburger, #ch-menu {
+    display: none;
+}
+
+.text-icon, .imag-icon {
+    display: inline-block;
+}
+
+
+
+
+@media screen and (max-width: 1200px){
+    .text-icon{
+        display: none;
+    }
+    li a{
+        font-size: 0.9em;
+    }
+}
+
+
+@keyframes animatie_submeniu {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    50% {
+        transform: scaleY(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes animatie_sageti {
+    0% {
+        left: -10px;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+
+

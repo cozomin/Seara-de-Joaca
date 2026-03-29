@@ -1,0 +1,389 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --culoare_fundal: #F5C333;
+  --culoare_contur: #33C0F5;
+  background-color: var(--culoare_fundal);
+  font-family: "Nunito", "Comic Sans MS", sans-serif;
+  overflow-x: hidden;
+}
+
+img, picture, object, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+#antet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /*justify-content: space-between;*/
+  background-color: #3B51A5;
+  color: white;
+  padding: 15px 30px;
+}
+
+#piclogo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  /*margin: 1em;*/
+}
+
+#piclogo img{
+  width: 8em;
+  height: auto;
+}
+
+#nume {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#nume h1 {
+  margin-bottom: 15px;
+}
+
+#nume a {
+  color: #74B2E4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#nume a:hover {
+  color: #ffffff;
+}
+
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#grid-pagina > * {
+  border: 2px solid var(--culoare_contur);
+  box-shadow: 0px 0px 5px var(--culoare_contur);
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#welcome picture img {
+  display: inline-block;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+#calendar-promotii {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  background-color: white;
+}
+
+#calendar-promotii caption {
+  caption-side: bottom;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: var(--culoare_contur);
+  font-weight: bold;
+}
+
+#calendar-promotii td, #calendar-promotii th {
+  border: 1px solid var(--culoare_contur);
+  padding: 10px;
+  text-align: center;
+  min-width: 120px;
+}
+
+#calendar-promotii thead {
+  background-color: #3B51A5;
+  color: white;
+}
+
+#calendar-promotii tfoot {
+  background-color: #F5C333;
+  font-weight: bold;
+}
+
+#calendar-promotii tbody tr:nth-child(odd) {
+  background-color: #E6EDF2;
+}
+
+#calendar-promotii tbody tr:nth-child(even) {
+  background-color: #FFF3CD;
+}
+
+#calendar-promotii tbody td.deosebit {
+  background-color: transparent;
+  font-weight: bold;
+}
+
+#calendar-promotii tbody tr {
+  transition: background-color 0.4s ease-in-out;
+}
+
+#calendar-promotii tbody tr:hover {
+  background-color: #74B2E4;
+}
+
+@media screen and (max-width: 700px) {
+  #calendar-promotii {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+}
+.container-iframe {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.taburi-iframe {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+
+.taburi-iframe > a {
+  padding: 10px;
+  background-color: var(--culoare_fundal);
+  border: 1px solid var(--culoare_contur);
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.taburi-iframe > a:hover {
+  background-color: var(--culoare_contur);
+  color: white;
+}
+
+
+math {
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+#subsol {
+  background-color: #3B51A5;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+#subsol a {
+  color: #FFCD00;
+}
+
+#link-top {
+  display: block;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 3px dashed var(--culoare_fundal);
+  background: linear-gradient(135deg, #1c2b5e, #74B2E4, #1c2b5e);
+  opacity: 0.5;
+  transition: transform 0.6s ease-in-out, opacity 0.3s ease-in-out;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+#link-top:hover {
+  opacity: 1;
+  transform: rotate(360deg);
+}
+
+#triunghi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+#link-top:hover #triunghi {
+  transform: rotate(-360deg);
+}
+
+#triunghi p {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+html {
+  font-size: 18px;
+  transition: font-size 0.4s ease-in-out;
+}
+
+#grid-pagina {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "area1 area1 area1 area1" "area8 area8 area8 area8" "area3 area2 area2 area4" "area5 area6 area7 area7";
+}
+
+#welcome {
+  grid-area: area1;
+}
+
+#tabel {
+  grid-area: area2;
+}
+
+#calendar {
+  grid-area: area3;
+}
+
+#anunturi {
+  grid-area: area4;
+}
+
+#online {
+  grid-area: area5;
+}
+
+#user {
+  grid-area: area6;
+}
+
+#server {
+  grid-area: area7;
+}
+
+#diverse {
+  grid-area: area8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.diverse-item {
+  flex: auto;
+  min-width: 300px;
+}
+
+.placeholder-box {
+  background-color: #e6edf2;
+  border-style: dashed;
+}
+
+@media screen and (max-width: 1000px) {
+  html {
+    font-size: 16px;
+  }
+  #grid-pagina {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "area1 area1" "area8 area8" "area2 area2" "area3 area4" "area5 area6" "area7 area7";
+  }
+}
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+  #grid-pagina {
+    display: flex;
+    flex-direction: column;
+  }
+  #antet {
+    flex-direction: column;
+    text-align: center;
+  }
+  #nume h1 {
+    margin-left: 0;
+  }
+  .z-row, .z-row.reverse {
+    flex-direction: column;
+  }
+  *, *::before, *::after {
+    animation: none;
+    transition: none;
+  }
+}
+.math-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  margin: 15px 0;
+  background-color: #ffffff;
+  border: 2px dashed var(--culoare_contur);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.formula-elo {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+}
+
+.math-var-principal {
+  color: #D32F2F;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+.math-text-sub {
+  color: #3B51A5;
+  font-size: 0.85rem;
+  font-style: normal;
+}
+
+.math-number-highlight {
+  color: #2E7D32;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.math-number {
+  color: #424242;
+}
+
+.math-var {
+  color: #1976D2;
+  font-style: italic;
+}
+
+.math-sub-var {
+  color: #F57C00;
+  font-weight: bold;
+}
+
+.math-operator {
+  color: #000000;
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+.math-paranthesis {
+  color: #3B51A5;
+  font-size: 1.5rem;
+  font-weight: lighter;
+}
