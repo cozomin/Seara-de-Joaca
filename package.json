@@ -1,0 +1,50 @@
+{
+  "name": "searadejoaca",
+  "version": "1.0.0",
+  "description": "Seara de Joacă este un magazin online dedicat jocurilor și jucăriilor pentru toate vârstele, oferind o gamă variată de produse pentru a aduce bucurie și conexiune în fiecare seară de joacă.",
+  "keywords": [
+    "jocuri",
+    "jucarii",
+    "jocuri de societate",
+    "jocuri educative",
+    "joc de carti",
+    "familie",
+    "prieteni",
+    "seara de joaca",
+    "magazin joc",
+    "magazin jucarii",
+    "magazin jocuri",
+    "magazin jucarie",
+    "boardgame",
+    "boardgames",
+    "toy",
+    "jucarie",
+    "copii",
+    "joc",
+    "copii"
+  ],
+  "homepage": "https://github.com/cozomin/Seara-de-Joaca#readme",
+  "bugs": {
+    "url": "https://github.com/cozomin/Seara-de-Joaca/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cozomin/Seara-de-Joaca.git"
+  },
+  "license": "ISC",
+  "author": "Cherciu Cosmin-Alexandru",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "pg": "^8.20.0",
+    "sass": "^1.99.0",
+    "sharp": "^0.34.5"
+  }
+}

@@ -1,0 +1,57 @@
+{
+    "cale_baza": "/resurse/imagini/erori",
+    "eroare_default":{
+        "titlu":"Eroare !!!",
+        "text": "A survenit o eroare.",
+        "imagine":"interzis.png"
+    },
+    "info_erori": [
+        {
+            "identificator":404,
+            "status":true,
+            "titlu":"404 - Nu există",
+            "text": "Materialul căutat nu este găsit pe server",
+            "imagine":"lupa.png"
+        },
+        {
+            "identificator":403,
+            "status":true,
+            "titlu":"403 - Interzis",
+            "text": "Operația anterioară nu este autorizată",
+            "imagine":"interzis.png"
+        },
+        {
+            "identificator":400,
+            "status":true,
+            "titlu":"400 - Cerere greșită",
+            "text": "Comandă sau sintaxă greșită",
+            "imagine":"interzis.png"
+        },
+        
+        {
+            "identificator":1,
+            "status":false,
+            "titlu":"Site în lucru",
+            "text": "Muncim cu zor ca să poți accesa acest conținut",
+            "imagine":"interzis.png"
+        },
+        
+        {
+            "identificator":2,
+            "status":false,
+            "titlu":"Eroare baza date",
+            "text": "Reveniți în câteva momente",
+            "imagine":"interzis.png"
+        },
+        
+        {
+            "identificator":3,
+            "status":false,
+            "titlu":"Date greșite",
+            "text": "Verificați datele introduse",
+            "imagine":"interzis.png"
+        }
+        
+    ]
+}
+  

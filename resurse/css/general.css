@@ -26,23 +26,15 @@ p {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  /*justify-content: space-between;*/
+  justify-content: space-between;
   background-color: #3B51A5;
   color: white;
   padding: 15px 30px;
 }
 
-#piclogo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  /*margin: 1em;*/
-}
-
-#piclogo img{
-  width: 8em;
-  height: auto;
+#logo picture img {
+  width: 5em;
+  margin: 1em;
 }
 
 #nume {
@@ -152,7 +144,6 @@ main {
 .container-iframe {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row-reverse;
   gap: 15px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -160,7 +151,7 @@ main {
 
 .taburi-iframe {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 10px;
 }
 
@@ -178,7 +169,6 @@ main {
   background-color: var(--culoare_contur);
   color: white;
 }
-
 
 math {
   overflow-x: auto;
@@ -386,4 +376,17 @@ html {
   color: #3B51A5;
   font-size: 1.5rem;
   font-weight: lighter;
+}
+
+.video-responsive {
+  width: 80%;
+  min-width: 320px;
+  max-width: 900px;
+  display: block;
+  margin: 0 auto;
+}
+
+::cue {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #1a1a1a;
 }

@@ -113,13 +113,9 @@ ul.meniu li:hover{
 
 @keyframes animatie_meniu_colt {
     0% {
-        /* Dreptunghiul este restrâns în colțul stânga-sus, cu marginile tale de 10px */
-        /*clip-path: inset(10px 100% 100% 10px);*/
         scale: 0;
     }
     100% {
-        /* Meniul este complet extins */
-        /*clip-path: inset(10px 10px 10px 10px);*/
         scale: 100%;
     }
 

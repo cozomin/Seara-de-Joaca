@@ -86,7 +86,7 @@ ul.meniu a {
   width: 100%;
   height: 100%;
   font-weight: bold;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 ul.meniu a:hover {
   color: #3359f3 !important;
@@ -131,5 +131,3 @@ ul.meniu a:hover {
     opacity: 1;
   }
 }
-
-/*# sourceMappingURL=nav.css.map */

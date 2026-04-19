@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Despre Seara de Joacă</title>
+    <meta name="description" content="Istoricul si descrierea magazinului Seara de Joaca">
+    <meta name="keywords" content="despre noi,  Seara de Joacă, joc, jocuri, jucarii, contact, seara, conctact magazin, magazin jucarii">
+
+    <%- include('../fragmente/head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../fragmente/header.ejs') %>
+    
+    <main>
+
+        <div id="grid-pagina">
+
+            <section id="welcome">
+                <div>
+                    <picture>
+                        <source srcset="/resurse/imagini/start_joc_200w.jpg" media="(max-width:700px)"/>
+                        <source srcset="/resurse/imagini/start_joc_400w.jpg" media="(max-width:1200px)"/>
+                        <img style="width: 100%; height: auto;" src="/resurse/imagini/start_joc_800w.jpg" alt="Masa plină de jocuri" title="Începuturile noastre">
+                    </picture>
+                    <hgroup>
+                        <h2><i class="fa-solid fa-book-open" style="color: #3B51A5; margin-right: 10px;"></i>Povestea Noastră</h2>
+                        <p>Totul a început într-o seară banală de vineri, când am realizat că ecranele ne acaparau tot timpul liber. Am scos din dulap un joc vechi prăfuit, am chemat câțiva prieteni și, fără să ne dăm seama, am stat treji până la răsărit. Aceea a fost <strong>prima noastră Seară de Joacă</strong> adevărată.</p>
+                        <p>Din dorința de a împărtăși această bucurie a deconectării și a râsetelor sincere, am deschis acest magazin. Am vrut să creăm nu doar un loc de unde poți cumpăra o cutie cu piese, ci o comunitate a oamenilor care prețuiesc timpul petrecut împreună.</p>
+                    </hgroup>
+                </div>
+
+                <div>
+                    <picture>
+                        <source srcset="/resurse/imagini/salavti_wd_300w.jpg" media="(max-width:700px)"/>
+                        <source srcset="/resurse/imagini/salavti_wd_400w.jpg" media="(max-width:1200px)"/>
+                        <img style="width: 100%; height: auto;" src="/resurse/imagini/salavti_wd_800w.jpg" alt="Magazinul Seara de joaca" title="Rafturi pline cu jocuri">
+                    </picture>
+                    <div>
+                        <h2>Misiunea Noastră</h2>
+                        <p>Misiunea <em>Seara de Joacă</em> este simplă: <strong>vrem să aducem oamenii înapoi la aceeași masă.</strong></p>
+                        <p>Fie că e vorba de o familie care vrea să petreacă duminica altfel, de un cuplu care caută o activitate nouă sau de un grup de prieteni gata de o seară epică de strategie, noi suntem aici să recomandăm exact jocul potrivit. Credem că prin joacă învățăm să comunicăm mai bine, să pierdem cu zâmbetul pe buze și să ne bucurăm cu adevărat de momentul prezent.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="diverse">
+                <div class="diverse-item" id="valori">
+                    <h2>Valorile care ne ghidează</h2>
+                    <article>
+                        <h3><i class="fa-solid fa-handshake-angle" ></i> Consultanță onestă</h3>
+                        <p>Nu îți vom recomanda niciodată cel mai scump joc, ci <i>cel mai potrivit</i> joc pentru grupul tău. Colegii noștri joacă zeci de titluri lunar pentru a-ți putea oferi sfaturi reale.</p>
+                    </article>
+                    <article>
+                        <h3><i class="fa-solid fa-leaf" ></i> Educație prin joacă</h3>
+                        <p>Susținem dezvoltarea copiilor prin jocuri educative, puzzle-uri și jucării interactive care le stimulează creativitatea, răbdarea și logica.</p>
+                    </article>
+                </div>
+            </section>
+
+        </div>
+
+        <video class="video-responsive" poster="/resurse/imagini/poster-video.jpg" controls preload="metadata">
+            <source src="/resurse/video/prezentare.webm" type="video/webm">
+            <source src="/resurse/video/prezentare.mp4" type="video/mp4">
+
+            <track src="/resurse/track/ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
+
+            <track src="/resurse/track/en.vtt" kind="subtitles" srclang="en" label="English">
+
+            Ne pare rău, browser-ul tău nu suportă redarea acestui videoclip.
+        </video>
+
+    </main>
+
+    <%- include('../fragmente/footer.ejs') %>
+</body>
+
+</html>

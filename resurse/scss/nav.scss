@@ -115,7 +115,7 @@ ul.meniu {
         width: 100%;
         height: 100%;
         font-weight: bold;
-        padding-left: 15px;
+        padding-left: 20px;
 
         &:hover{
             color: $buton-hover-text !important;
@@ -133,9 +133,6 @@ ul.meniu {
 .text-icon, .imag-icon {
     display: inline-block;
 }
-
-
-
 
 @media screen and (max-width: 1200px){
     .text-icon{

@@ -5,7 +5,7 @@
 
 @media print{
     #banner{
-        content: "Element poziționat absolut pe a doua pagină.Pentru a vedea stilul de printare apăsați Ctrl+P.";
+        /*content: "Element poziționat absolut pe a doua pagină.Pentru a vedea stilul de printare apăsați Ctrl+P.";*/
         position: absolute;
         /*font-size: 10px;*/
         right: 0;
@@ -18,7 +18,7 @@
 
     h1 {
         /*page-break-after: always;*/
-        margin-top: 50%;
+        /*margin-top: 50%;*/
         text-align: center;
         margin-left: 1cm;
     }
@@ -110,7 +110,7 @@
     /*    white-space: pre-wrap;*/
     /*}*/
 
-    img, picture, object, #logo, figure, figcaption, iframe, #triunghi, #link-top, .imag-icon{
+    img, picture, video, audio, object, #logo, figure, figcaption, iframe, #triunghi, #link-top, .imag-icon{
         display: none !important;
     }
 
@@ -142,12 +142,12 @@
 
 }
 
-@page left {
+@page :left {
     margin-left: 2cm;
     margin-right: 1cm;
 }
 
-@page right {
+@page :right {
 
    margin-right: 2cm;
    margin-left: 1cm;

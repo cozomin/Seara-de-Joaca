@@ -384,3 +384,15 @@ html {
     font-weight: lighter;
 }
 
+.video-responsive {
+    width: 80%;
+    min-width: 320px;
+    max-width: 900px;
+    display: block;
+    margin: 0 auto;
+}
+
+::cue {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #1a1a1a;
+}
