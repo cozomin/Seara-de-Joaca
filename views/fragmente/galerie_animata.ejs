@@ -1,12 +1,14 @@
+<section id="sectiune-galerie-animata">
     <div id="galerie-animata" class="galerie-a">
-        <% for (let imag of locals.imagini) { 
-                     %>
-                        <figure>
-                            <picture>
-                                <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
-                                <img src="<%- imag.fisier %>" alt="imagine">
-                            </picture>
-                            <figcaption><%- imag.descriere %></figcaption>
-                        </figure>
-                <% }  %>
+        <div id="grid-animat">
+            <% for (let imag of locals.imaginiGalerieAnimata) { %>
+                <figure>
+                    <img src="<%- imag.fisier_mediu || imag.fisier %>"
+                         alt="<%- imag.alt || imag.nume || 'imagine galerie' %>"
+                         title="<%- imag.descriere || imag.nume || '' %>">
+                    <figcaption><%- imag.nume || '' %></figcaption>
+                </figure>
+            <% } %>
+        </div>
     </div>
+</section>

@@ -1,0 +1,19 @@
+<div id="galerie-statica">
+    <% for(let img of imagini) { %>
+        <figure class="galerie-item">
+            <picture>
+                <source srcset="<%= img.fisier_mic %>" media="(max-width: 700px)"/>
+                <source srcset="<%= img.fisier_mediu %>" media="(max-width: 1200px)"/>
+                <img src="<%= img.fisier %>" 
+                     alt="<%= img.alt ? img.alt : img.nume %>" 
+                     title="<%= img.descriere %>">
+            </picture>
+            <figcaption>
+                <span class="index-galerie"></span> <%= img.descriere %>
+                <% if(img.licenta) { %>
+                    <br><small>Licență: <%= img.licenta %></small>
+                <% } %>
+            </figcaption>
+        </figure>
+    <% } %>
+</div>

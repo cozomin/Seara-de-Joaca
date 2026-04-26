@@ -1,41 +1,154 @@
 {
-	"cale_galerie":"resurse/imagini/galerie",
-	"imagini": [
-		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie","aprilie", "decembrie","octombrie"]
-		},
-		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie","octombrie"]
-			
-		},
-		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
-		},
-		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie","aprilie", "decembrie"]
-		},
-		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată",
-			
-			"luni":["noiembrie","aprilie", "decembrie","octombrie"]
-		},
-		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
-		},
-		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
-		}
-	]
+  "cale_galerie": "resurse/imagini/galerie",
+  "imagini": [
+    {
+      "cale_relativa": "cuburi-constructie.jpg",
+      "nume": "Cuburi Construcție",
+      "descriere": "Cuburi colorate de lemn pentru cei mici",
+      "timp": "dimineata",
+      "alt": "copil jucându-se cu cuburi"
+    },
+    {
+      "cale_relativa": "puzzle-animale.jpg",
+      "nume": "Puzzle Animale",
+      "descriere": "Puzzle educativ pentru o dimineață productivă",
+      "timp": "dimineata",
+      "alt": "Puzzle cu animale pentru copii"
+    },
+    {
+      "cale_relativa": "trenulet-lemn.jpg",
+      "nume": "Trenuleț de lemn",
+      "descriere": "Jucărie clasică de lemn",
+      "timp": "dimineata",
+      "alt": "Trenuleț de jucărie din lemn"
+    },
+    {
+      "cale_relativa": "joc-memorie.jpg",
+      "nume": "Joc de Memorie",
+      "descriere": "Carduri de memorie pentru dezvoltare",
+      "timp": "dimineata",
+      "alt": "Carduri ilustrate pentru joc de memorie"
+    },
+    {
+      "cale_relativa": "ursulet-plus.jpg",
+      "nume": "Ursulet de Pluș",
+      "descriere": "Un prieten pufos pentru trezire",
+      "timp": "dimineata",
+      "alt": "Ursuleț de pluș moale"
+    },
+    {
+      "cale_relativa": "masinuta-curse.jpg",
+      "nume": "Mașinuță de Curse",
+      "descriere": "Adrenalină dis-de-dimineață",
+      "timp": "dimineata",
+      "alt": "Mașinuță de curse de jucărie"
+    },
+    {
+      "cale_relativa": "joc-sah.jpg",
+      "nume": "Joc de Șah",
+      "descriere": "Strategie pentru o minte ascuțită",
+      "timp": "dimineata",
+      "alt": "Tablă de șah cu piese așezate"
+    },
+    {
+      "cale_relativa": "catan-board.jpg",
+      "nume": "Coloniștii din Catan",
+      "descriere": "Negocieri și resurse la amiază",
+      "timp": "zi",
+      "alt": "Tablă și piese pentru jocul de societate Catan"
+    },
+    {
+      "cale_relativa": "jenga-turn.jpg",
+      "nume": "Turn Jenga",
+      "descriere": "Atenție să nu cadă turnul!",
+      "timp": "zi",
+      "alt": "Turn format din piese de lemn Jenga"
+    },
+    {
+      "cale_relativa": "monopoly-bani.jpg",
+      "nume": "Monopoly",
+      "descriere": "Bani, proprietăți și capitalism de weekend",
+      "timp": "zi",
+      "alt": "Tablă de joc Monopoly cu bani și zaruri"
+    },
+    {
+      "cale_relativa": "zaruri-colorate.jpg",
+      "nume": "Zaruri D&D",
+      "descriere": "Zaruri cu mai multe fețe pentru aventuri",
+      "timp": "zi",
+      "alt": "Set de zaruri colorate cu mai multe fețe pentru Dungeons and Dragons"
+    },
+    {
+      "cale_relativa": "carti-uno.jpg",
+      "nume": "Cărți UNO",
+      "descriere": "Joc de cărți dinamic și amuzant",
+      "timp": "zi",
+      "alt": "Pachet de cărți de joc UNO"
+    },
+    {
+      "cale_relativa": "joc-dixit.jpg",
+      "nume": "Dixit",
+      "descriere": "Imaginație și povești ilustrate",
+      "timp": "zi",
+      "alt": "Cărți cu ilustrații fantastice pentru jocul Dixit"
+    },
+    {
+      "cale_relativa": "boardgame-familie.jpg",
+      "nume": "Boardgame de Familie",
+      "descriere": "Distracție alături de cei dragi",
+      "timp": "zi",
+      "licenta": "CC0",
+      "alt": "O familie jucând un boardgame împreună"
+    },
+    {
+      "cale_relativa": "carti-poker.jpg",
+      "nume": "Cărți de Poker",
+      "descriere": "Un meci de poker târziu în noapte",
+      "timp": "noapte",
+      "alt": "Cărți de joc pentru poker și jetoane"
+    },
+    {
+      "cale_relativa": "escape-room-box.jpg",
+      "nume": "Escape Room",
+      "descriere": "Mistere ce trebuie rezolvate până la miezul nopții",
+      "timp": "noapte",
+      "alt": "Cutie cu componente pentru un joc tip Escape Room acasă"
+    },
+    {
+      "cale_relativa": "joc-detectivi.jpg",
+      "nume": "Cluedo",
+      "descriere": "Cine este vinovatul? O seară de suspans.",
+      "timp": "noapte",
+      "alt": "Componente și tablă pentru jocul de detectivi Cluedo"
+    },
+    {
+      "cale_relativa": "joc-groaza.jpg",
+      "nume": "Boardgame Horror",
+      "descriere": "Tematică înfricoșătoare pentru nopți lungi",
+      "timp": "noapte",
+      "alt": "Componente ale unui boardgame cu tematică de groază"
+    },
+    {
+      "cale_relativa": "party-game.jpg",
+      "nume": "Party Game",
+      "descriere": "Râsete și provocări la petrecere",
+      "timp": "noapte",
+      "alt": "Grup de prieteni distrându-se cu un party game"
+    },
+    {
+      "cale_relativa": "trivia-quiz.jpg",
+      "nume": "Joc de Trivia",
+      "descriere": "Testează-ți cunoștințele alături de prieteni",
+      "timp": "noapte",
+      "alt": "Carduri cu întrebări pentru joc de Trivia"
+    },
+    {
+      "cale_relativa": "zaruri-intuneric.jpg",
+      "nume": "Zaruri Fosforescente",
+      "descriere": "Zaruri care strălucesc în întuneric",
+      "timp": "noapte",
+      "licenta": "CC0",
+      "alt": "Zaruri care strălucesc verde fosforescent în întuneric"
+    }
+  ]
 }

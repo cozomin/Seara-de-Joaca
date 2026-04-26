@@ -1,0 +1,105 @@
+// =======================================================================
+// 1. SUPRASCRIERE VARIABILE BOOTSTRAP
+// =======================================================================
+
+// --- Culori de background pentru teme (minim 2) ---
+$primary: #3B51A5; // Culoarea albastru închis folosită în antet
+$secondary: #33C0F5; // Culoarea albastru deschis (culoare contur)
+$warning: #F5C333; // Culoarea de fundal galbenă
+
+// --- Culori de font ---
+// Suprascriem culoarea fontului pentru body și link-uri
+$body-color: #1a1a1a;
+$link-color: #74B2E4;
+
+// --- Dimensiuni de ecran (Breakpoints) ---
+// Modificăm valorile pentru ecrane medii (md) și mari (lg)
+// Setate pentru a se potrivi cu media query-urile tale existente (ex: 700px, 1000px)
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 700px,  // Suprascris (default era 768px)
+  lg: 1000px, // Suprascris (default era 992px)
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// --- Dimensiunea razelor de border ---
+$border-radius: 0.75rem;     // Default este 0.375rem
+$border-radius-lg: 1.25rem;  // Default este 0.5rem
+
+// --- Dimensiunea literelor pentru heading-uri ---
+$h1-font-size: 2.8rem;
+$h2-font-size: 2.2rem;
+$h3-font-size: 1.8rem;
+
+// --- Familia de font implicită ---
+// --- Familia de font implicită ---
+$font-family-base: 'Nunito', 'Comic Sans MS', sans-serif;
+$font-family-sans-serif: $font-family-base; // Adaugă această linie
+$headings-font-family: $font-family-base;
+
+// --- Încă o variabilă la alegere (Grosimea liniilor si Umbrele) ---
+$border-width: 2px;
+$box-shadow: 0px 4px 10px rgba(51, 192, 245, 0.3); // O umbră folosind culoarea contur
+
+// =======================================================================
+// 2. IMPORTUL SURSEI BOOTSTRAP
+// =======================================================================
+// Presupunând că ai instalat bootstrap prin npm (așa cum reiese din package.json).
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// =======================================================================
+// 3. CORECTARE BOOTSTRAP (Reguli proprii de suprascriere a resetărilor Bootstrap)
+// =======================================================================
+
+// Bootstrap adaugă text-decoration: none și culori specifice link-urilor din navigație.
+// De asemenea, setează margini implicite care pot strica grid-ul tău din "general.scss".
+// Aici forțăm elementele tale esențiale să își păstreze styling-ul original:
+
+body {
+    background-color: var(--culoare_fundal) !important;
+}
+
+#antet a {
+    text-decoration: none;
+}
+
+// Exemplu specific de culoare de font pe un element (suprascrie contrastul default din bootstrap)
+.btn-secondary {
+    color: #ffffff !important; // Ne asigurăm că scrisul pe butonul secondary este alb
+}
+
+body {
+    background-color: var(--culoare_fundal) !important;
+}
+
+// 1. Corectare Link-uri
+// Bootstrap pune automat text-decoration: underline și culoare albastră pe toate link-urile.
+// Resetăm acest comportament pentru antet, navigație și footer, lăsându-l doar unde vrei (de ex. link-uri din text).
+#antet a, 
+nav a, 
+#subsol a {
+    text-decoration: none;
+    color: inherit;
+}
+
+// 2. Corectare Liste (ul, ol, dl)
+// Bootstrap adaugă margini inferioare și padding la liste.
+// Secțiunile tale vechi (cum e meniul sau anunțurile) trebuie protejate.
+#antet ul, nav ul {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+// 3. Corectare Paragrafe și Heading-uri
+// Ne asigurăm că elementele vechi își păstrează spațierea din general.scss
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    // Păstrăm marginile inferioare așa cum le cereai în general.scss
+}
+
+// 4. Contrast pe butoanele Bootstrap
+.btn-secondary {
+    color: #ffffff !important;
+}

@@ -10,6 +10,7 @@
     <title>Seara de Joacă</title>
 
     <%- include('../fragmente/head.ejs') %>
+   <link rel="stylesheet" href="/resurse/scss_ejs/galerie-animata.css?n=<%= N_galerie %>" type="text/css"/>
 </head>
 
 <body>
@@ -53,7 +54,9 @@
                         </hgroup>
                         <p><b>Seara de joacă</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate produsele cumpărate seara (în intervalul 19:00 - 00:00)</p>
                         <p>Oferta este valabilă doar în ultima zi a fiecărei luni online sau fizic la depozitele <abbr title="Seara de Joacă">SdJ</abbr>.</p>
-                        <p>În cazul în care cumpărați mai mult de două <b>jocuri</b> sau trei <b>jucării</b> primiți si un card de fidelitate care vă poate aduce reduceri pe viitor!</p>
+                        <div class="container-mesaj-animat">
+                            <p class = "text-animat">În cazul în care cumpărați mai mult de două <b>jocuri</b> sau trei <b>jucării</b> primiți si un card de fidelitate care vă poate aduce reduceri pe viitor!</p>
+                        </div>
                     </article>
                     <article>
                         <h3>Pachete de joacă</h3>
@@ -77,10 +80,82 @@
                     </article>
                 </div>
 
+                <hr>
+
+                <section id="sectiune-galerie">
+                    <h2>Galerie Imagini</h2>
+
+                    <%- include('../fragmente/galerie_statica.ejs', { imagini: imagini }) %>
+                </section>
+
+                <section id="galerie-dinamica-animata">
+                    <h2>Galerie Aleatoare Animată (<%= N_galerie %> imagini)</h2>
+                    
+                    <%- include("../fragmente/galerie_animata.ejs", { imagini: imaginiGalerieAnimata }) %>
+                </section>
+
+                <hr>
+
+                <section id="recomandari-bootstrap" class="container mt-5 pt-5 mb-3 border-top border-secondary border-2">
+                <div class="row mb-4 text-center">
+                    <div class="col-12">
+                        <h2 class="text-primary fw-bold"><i class="fa-solid fa-gem mb-2"></i> Recomandările Săptămânii</h2>
+                    </div>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-secondary">
+                            <img src="/resurse/imagini/galerie/mediu/catan-board.webp" class="card-img-top object-fit-cover" style="height: 250px;" alt="Catan">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title text-primary">Coloniștii din Catan</h4>
+                                <p class="card-text">Negocieri și resurse. Descoperă insula Catan alături de prieteni într-un joc clasic de strategie.</p>
+                                <a href="#" class="btn btn-primary mt-auto shadow-sm">Detalii joc</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow border-primary">
+                            <div class="card-header bg-warning text-dark fw-bold text-center">
+                                <i class="fa-solid fa-fire"></i> Bestseller
+                            </div>
+                            <img src="/resurse/imagini/galerie/mediu/joc-dixit.webp" class="card-img-top object-fit-cover" style="height: 202px;" alt="Dixit">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title text-primary">Dixit</h4>
+                                <p class="card-text">Imaginație și povești ilustrate. Un joc excelent pentru dezvoltarea creativității în grup.</p>
+                                <a href="#" class="btn btn-secondary mt-auto shadow-sm">Adaugă în coș</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm text-bg-primary border-0">
+                            <img src="/resurse/imagini/galerie/mediu/escape-room-box.webp" class="card-img-top object-fit-cover opacity-75" style="height: 250px;" alt="Escape Room">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title text-white">Escape Room</h4>
+                                <p class="card-text">Mistere ce trebuie rezolvate până la miezul nopții, aducând tensiunea direct la tine acasă.</p>
+                                <a href="#" class="btn btn-warning mt-auto fw-bold shadow-sm">Precomandă</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="alert alert-info alert-dismissible fade show shadow-sm border-info" role="alert">
+                            <i class="fa-solid fa-circle-info me-2"></i>
+                            <strong>Hei, pasionatule de jocuri!</strong> Aceasta este o alertă interactivă creată cu Bootstrap. Poți să o închizi folosind butonul din dreapta.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                </section>
+
                 <div class="diverse-item" id="resurse-utile">
                     <h2>Resurse și Informații Utile</h2>
                     <article>
-                        <h3>Recomandări de jocuri de la cei mai pasionați</h3>
+                        <h3 class="water-text" data-text="Recomandări de jocuri de la cei mai pasionați">Recomandări de jocuri de la cei mai pasionați</h3>
                         <p>Pasionat de strategii complexe? Verifică topurile și recenziile internaționale pe <a href="https://boardgamegeek.com/" target="_blank" rel="noopener noreferrer">BoardGameGeek</a>.</p>
                     </article>
                     <article>
@@ -299,6 +374,7 @@
             </section>
 
         </div>
+
     </main>
 
     <%- include('../fragmente/footer.ejs') %>

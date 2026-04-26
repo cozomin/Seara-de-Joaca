@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -20,6 +21,40 @@ img, picture, object, iframe {
 
 p {
   margin-bottom: 10px;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  height: 0.2em;
+  background-color: var(--culoare_contur);
+  margin: 2em 0;
+  position: relative;
+  overflow: visible;
+}
+
+hr::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5em;
+  height: 1em;
+  background-color: var(--culoare_contur);
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+hr::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5em;
+  height: 1em;
+  background-color: var(--culoare_contur);
+  clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
 }
 
 #antet {
@@ -72,6 +107,77 @@ main {
   overflow: hidden;
 }
 
+#welcome .z-text {
+  column-count: 2;
+  column-rule: 2px dashed var(--culoare_contur);
+  column-gap: 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+  #welcome .z-text {
+    column-count: 1;
+    column-rule: none;
+  }
+}
+::selection {
+  background-color: var(--culoare_contur);
+  color: var(--culoare_fundal);
+  text-shadow: none; /* Opțional, pentru o vizibilitate mai bună */
+}
+
+/* --- 3. Text care se plimbă orizontal --- */
+.container-mesaj-animat {
+  width: 100%;
+  overflow: hidden; /* CRITIC: previne apariția scrollbar-ului orizontal */
+  background-color: #3B51A5; /* Culoarea din antet */
+  color: white;
+  padding: 10px 0;
+  box-sizing: border-box;
+  white-space: nowrap; /* Asigură că textul rămâne pe un singur rând */
+  margin-bottom: 20px;
+}
+
+.text-animat {
+  display: inline-block;
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  /* Animația durează 15 secunde, viteză constantă, se repetă la infinit */
+  animation: plimbare-text 15s linear infinite;
+}
+
+@keyframes plimbare-text {
+  0% {
+    transform: translateX(100vw); /* Începe din afara ecranului, în dreapta */
+  }
+  100% {
+    transform: translateX(-100%); /* Iese complet din ecran, în stânga */
+  }
+}
+/* --- 4. Background fix la scroll cu animație --- */
+.bg-animat-fix {
+  /* Setăm background-ul fix */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Animația de schimbare a imaginilor (durează 10 secunde) */
+  animation: schimba-fundal 10s infinite alternate;
+  /* Puțin padding pentru a ne asigura că secțiunea are înălțime dacă e folosită ca div */
+  padding: 100px 20px;
+  color: white;
+}
+
+@keyframes schimba-fundal {
+  0%, 45% {
+    /* Imaginea 1 */
+    background-image: url("/resurse/imagini/start_joc_800w.jpg");
+  }
+  55%, 100% {
+    /* Imaginea 2 */
+    background-image: url("/resurse/imagini/start_jucarie_800w.jpg");
+  }
+}
 #welcome picture img {
   display: inline-block;
 }
@@ -389,4 +495,90 @@ html {
 ::cue {
   background-color: rgba(255, 255, 255, 0.3);
   color: #1a1a1a;
+}
+
+.water-text {
+  position: relative;
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.2;
+}
+
+.water-text::after {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  transform-origin: bottom;
+  transform: scaleY(-1);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 90%), repeating-linear-gradient(to bottom, transparent 0, black 3px, transparent 6px);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 90%), repeating-linear-gradient(to bottom, transparent 0, black 3px, transparent 6px);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  -webkit-mask-size: 100% 100%, 100% 200%;
+  mask-size: 100% 100%, 100% 200%;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.water-text:hover::after {
+  animation: ripple-movement 1s linear infinite;
+}
+
+@keyframes ripple-movement {
+  from {
+    mask-position: 0 0, 0 0;
+    -webkit-mask-position: 0 0, 0 0;
+  }
+  to {
+    mask-position: 0 0, 0 12px;
+    -webkit-mask-position: 0 0, 0 12px;
+  }
+}
+.efect-duotone {
+  --c1: var(--culoare_contur);
+  --c2: #3B51A5;
+  --c4: #1223e3;
+  --c3: #e1ff1c;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  filter: brightness(200%) grayscale(0);
+  transition: all 2s linear;
+}
+
+.efect-duotone::before,
+.efect-duotone::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 2s linear;
+  pointer-events: none;
+}
+
+.efect-duotone::before {
+  background-color: var(--c1);
+  mix-blend-mode: multiply;
+}
+
+.efect-duotone::after {
+  background-color: var(--c2);
+  mix-blend-mode: lighten;
+}
+
+.efect-duotone:hover::before {
+  background-color: var(--c3);
+}
+
+.efect-duotone:hover::after {
+  background-color: var(--c4);
 }
