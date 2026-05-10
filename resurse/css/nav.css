@@ -5,16 +5,36 @@
 
 #nume {
   order: 2;
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+#n-switch {
+  order: 3;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.n-check {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.n-form {
+  cursor: pointer;
 }
 
 nav {
-  order: 3;
-  background-color: #74B2E4;
+  order: 4;
+  background-color: transparent;
+  flex-basis: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-direction: column;
+  margin-top: 15px;
 }
 
 ul.meniu, ul.meniu ul {
@@ -29,20 +49,17 @@ ul.meniu {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 ul.meniu ul {
   display: none;
   animation: animatie_submeniu 0.4s linear;
   transform-origin: center top;
 }
-
 ul.meniu ul li:hover > ul {
   display: block;
   position: absolute;
   top: 0;
   left: 100%;
 }
-
 ul.meniu li {
   cursor: pointer;
   position: relative;
@@ -56,29 +73,24 @@ ul.meniu li {
   transition: box-shadow 0.4s ease, color 0.4s ease, background-color 0.4s ease;
   box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
 }
-
 ul.meniu li li {
   text-align: left;
 }
-
 ul.meniu > li:hover {
   background-color: #FFCD00;
   color: #3B51A5;
   border-color: #FFCD00;
   box-shadow: inset 0 0 15px rgb(51, 89, 243);
 }
-
 ul.meniu > li:hover li a:hover::before {
   animation: animatie_sageti 0.4s ease-in-out forwards;
 }
-
 ul.meniu > li:hover li a::before {
   content: "→";
   position: absolute;
   left: -10px;
   opacity: 0;
 }
-
 ul.meniu > li:hover > ul {
   display: block;
   position: absolute;
@@ -87,17 +99,12 @@ ul.meniu > li:hover > ul {
   left: 0;
   width: 100%;
 }
-
 ul.meniu a {
   text-decoration: none;
   color: inherit;
   display: inline-block;
-  width: 100%;
-  height: 100%;
   font-weight: bold;
-  padding-left: 20px;
 }
-
 ul.meniu a:hover {
   color: #3359f3 !important;
 }
@@ -114,8 +121,26 @@ ul.meniu a:hover {
   .text-icon {
     display: none;
   }
-  li a {
-    font-size: 0.9em;
+  .meniu > li {
+    padding: 0 !important;
+  }
+  .imag-icon {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .imag-icon a,
+  .imag-icon span {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: normal !important;
+  }
+  ul.meniu {
+    padding-left: 0;
   }
 }
 @keyframes animatie_submeniu {

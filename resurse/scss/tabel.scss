@@ -1,0 +1,66 @@
+.container-tabel {
+    margin: 20px auto;
+    max-width: 100%;
+    overflow-x: auto; 
+    font-family: serif;
+}
+
+#tabel-transpus {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+    border: 2px solid black;
+}
+
+#tabel-transpus th, 
+#tabel-transpus td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#tabel-transpus thead th {
+    font-weight: bold;
+    text-align: center;
+}
+
+#tabel-transpus caption {
+    caption-side: bottom;
+    text-align: left;
+    padding: 10px;
+    border: 2px solid black;
+    border-top: none; 
+}
+
+@media screen and (max-width: 700px) {
+    
+    #tabel-transpus thead, 
+    #tabel-transpus tbody, 
+    #tabel-transpus tr {
+        display: block;
+        float: left;
+    }
+
+    #tabel-transpus th, 
+    #tabel-transpus td {
+        display: block;
+        border: 1px solid black;
+        padding: 0.5em;
+        min-height: 3em;
+    }
+
+    #tabel-transpus th + th {
+        border-top: none;
+    }
+
+    #tabel-transpus tbody td {
+        border-left: none;
+    }
+
+    #tabel-transpus caption {
+        display: block;
+        clear: both; 
+        width: 100%;
+        box-sizing: border-box;
+        border-top: 1px solid black;
+    }
+}

@@ -1,39 +1,37 @@
-@use "sass:list";
-@use "sass:math";
-
-// Aceste variabile vin din index.js prin EJS
 $n: <%- n %>;
 $secventa: <%- sassList %>;
-$total: list.length($secventa);
+$total: length($secventa);
 
 .galerie-a {
     width: 400px;
     height: 300px;
-    overflow: hidden; /* Ascunde restul grid-ului */
+    overflow: hidden; 
     position: relative;
     box-sizing: content-box;
     margin: 0 auto 5rem auto;
     
-    /* Border image conform cerinței */
     border: 15px solid transparent;
     border-image: url('/resurse/imagini/start_jucarie_400w.jpg') 30 stretch;
+    animation: animatie_grid calc(#{$total} * 3s) linear alternate infinite;
+}
+
+.galerie-a:hover #grid-animat {
+    animation-play-state: paused;
 }
 
 #grid-animat {
     display: grid;
-    /* Creăm N coloane și N rânduri de dimensiunea galeriei */
-    grid-template-columns: repeat($n, 400px);
-    grid-template-rows: repeat($n, 300px);
-    width: calc($n * 400px);
-    height: calc($n * 300px);
+    grid-template-columns: repeat(#{$n}, 400px);
+    grid-template-rows: repeat(#{$n}, 300px);
+    width: calc(#{$n} * 400px);
+    height: calc(#{$n} * 300px);
     
     transform-origin: 0 0;
     position: absolute;
     top: 0;
     left: 0;
     
-    /* Timp total: 3 secunde pentru fiecare imagine */
-    animation: animatie_grid calc($total * 3s) linear infinite;
+    animation: animatie_grid calc(#{$total} * 3s) linear infinite;
 }
 
 #grid-animat figure {
@@ -62,32 +60,33 @@ $total: list.length($secventa);
     margin: 0;
 }
 
-/* Generarea dinamică a cadrelor cheie (keyframes) */
 @keyframes animatie_grid {
     @for $i from 1 through $total {
-        $curr: list.nth($secventa, $i);
-        $row: list.nth($curr, 1);
-        $col: list.nth($curr, 2);
+        $curr: nth($secventa, $i);
+        $row: nth($curr, 1);
+        $col: nth($curr, 2);
 
         $next_idx: if($i == $total, 1, $i + 1);
-        $next: list.nth($secventa, $next_idx);
-        $next_row: list.nth($next, 1);
-        $next_col: list.nth($next, 2);
+        $next: nth($secventa, $next_idx);
+        $next_row: nth($next, 1);
+        $next_col: nth($next, 2);
 
-        $base: ($i - 1) * math.div(100, $total);
-        $p_hold: $base + math.div(40, $total); // Stă pe loc
-        $p_out: $base + math.div(70, $total);  // Zoom out maxim
-        $p_end: $base + math.div(100, $total); // Ajunge la următoarea
+        $base: ($i - 1) * (100 / $total);
+        $p_hold: $base + (40 / $total); 
+        $p_out: $base + (70 / $total);  
+        $p_end: $base + (100 / $total); 
 
-        $scale_out: math.div(1, $n);
+        $scale_out: (1 / $n);
 
-        // Arată imaginea curentă (Zoom In)
         #{$base}% { transform: translate(calc(-1 * #{$col} * 400px), calc(-1 * #{$row} * 300px)) scale(1); }
-        // Rămâne pe imaginea curentă
         #{$p_hold}% { transform: translate(calc(-1 * #{$col} * 400px), calc(-1 * #{$row} * 300px)) scale(1); }
-        // Zoom Out (arată tot grid-ul NxN)
         #{$p_out}% { transform: translate(0px, 0px) scale(#{$scale_out}); }
-        // Se mută și face Zoom In pe următoarea
         #{$p_end}% { transform: translate(calc(-1 * #{$next_col} * 400px), calc(-1 * #{$next_row} * 300px)) scale(1); }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #galerie-dinamica-animata { 
+        display: none !important;
     }
 }

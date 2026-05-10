@@ -1,68 +1,145 @@
-DROP TYPE IF EXISTS categ_prajitura;
-DROP TYPE IF EXISTS tipuri_produse;
-
-CREATE TYPE categ_prajitura AS ENUM( 'comanda speciala', 'aniversara', 'editie limitata', 'pentru copii', 'dietetica','comuna');
-CREATE TYPE tipuri_produse AS ENUM('cofetarie', 'patiserie', 'gelaterie');
 
 
-CREATE TABLE IF NOT EXISTS prajituri (
-   id serial PRIMARY KEY,
-   nume VARCHAR(50) UNIQUE NOT NULL,
-   descriere TEXT,
-   pret NUMERIC(8,2) NOT NULL,
-   gramaj INT NOT NULL CHECK (gramaj>=0),   
-   tip_produs tipuri_produse DEFAULT 'cofetarie',
-   calorii INT NOT NULL CHECK (calorii>=0),
-   categorie categ_prajitura DEFAULT 'comuna',
-   ingrediente VARCHAR [], --pot sa nu fie specificare deci nu punem NOT NULL
-   pt_diabetici BOOLEAN NOT NULL DEFAULT FALSE,
-   imagine VARCHAR(300),
-   data_adaugare TIMESTAMP DEFAULT current_timestamp
+DROP TYPE IF EXISTS tip_categorie CASCADE;
+
+CREATE TYPE tip_categorie AS ENUM (
+    'Jocuri de societate', 
+    'Jucarii', 
+    'Hobby', 
+    'Educativ', 
+    'Resigilate'
 );
 
-INSERT into prajituri (nume,descriere,pret, gramaj, calorii, tip_produs, categorie, ingrediente, pt_diabetici, imagine) VALUES 
-('Savarină', 'Prăjitură insiropată, cu frișcă', 7.5 , 200, 400, 'cofetarie', 'comuna', '{"faina","lapte","frisca","zahar"}', False, 'aproximativ-savarina.jpg'),
+DROP TABLE IF EXISTS wishlist CASCADE;
+DROP TABLE IF EXISTS produse_comenzi CASCADE;
+DROP TABLE IF EXISTS comenzi CASCADE;
+DROP TABLE IF EXISTS utilizatori CASCADE;
+DROP TABLE IF EXISTS produse CASCADE;
+DROP TABLE IF EXISTS subcategorii CASCADE;
+DROP TABLE IF EXISTS grupe_varsta CASCADE;
+DROP TABLE IF EXISTS limbi CASCADE;
 
-('Amandină', 'Prăjitură cu ciocolată', 6 , 200, 400, 'cofetarie', 'comuna', '{"faina","ciocolata","lapte","zahar","unt"}', False, 'posibil-amandina.jpg'),
-
-('Tort glazurat', 'Tort pentru evenimente, poate fi decorat cu diverse culori', 35 , 1000, 2500, 'cofetarie', 'comanda speciala', '{"oua","zahar","faina","lapte","ciocolata","alune"}', False,'tort-glazurat.jpg'),
-
-('Dulcelind cu fructe', 'Rețetă proprie, cu conținut sănătos (dacă ignorați tonele de zahăr) de fruncte proaspete', 10 , 250, 620, 'cofetarie', 'aniversara', '{"frisca","zahar","faina","zmeura","lapte","mure","capsuni"}', False,'dulcelind.jpg'),
-
-('Tartă cu căpșuni', 'Sub căpșuni se află o tartă.', 6 , 245, 280, 'cofetarie', 'comuna', '{"vanilie","faina","capsuni","lapte", "indulcitor"}', True,'tarta-capsuni.jpg'),
-
-('Nimic', 'Nimic', 10 , 0, 0, 'cofetarie', 'dietetica', '{}', False, 'nimic.jpg'),
-
-('Cozonac zburător', 'Cineva a vărsat heliu peste aluat.', 25.5 , 1000, 1800, 'patiserie', 'comuna', '{"zahar","unt","faina","lapte","cacao","alune", "nuca"}', False, 'cozonac-zburator.jpg'),
-
-('Brioșe', 'Aluat pufos, cu bucățele de ciocolată. Bucățelele de ciocolata, însă, nu sunt tocmai pufoase.', 8 , 145, 320, 'patiserie', 'comuna', '{"ciocolata","lapte","unt","migdale","faina","zahar"}', False, 'briose.jpg'),
-
-('Turtă dulce', 'Un produs bun de savurat de Craciun. Sau și mai târziu dacă stocul a depășit cererea. De obicei mai găsiți și prin iunie...', 12 , 400, 550, 'patiserie', 'aniversara', '{"faina","lapte","scortisoara","zahar","unt"}', False, 'turta-dulce.jpg'),
-
-('Turtă dulce dietetică', 'Îndulcitor în loc de zahăr. Dar nu vă lăsați păcăliți de nume, în rest nimic nu-i dietetic.', 10 , 400, 520, 'patiserie', 'aniversara', '{"faina","lapte","zaharina","unt","scortisoara"}', True, 'turta-dulce-dietetica.jpg'),
-
-('Căsuță din turtă dulce', 'Vine cu tot cu vrăjitoare și cuptor la pachet. A nu se lăsa în mijlocul pădurii.', 70 , 450, 2700, 'patiserie', 'aniversara', '{"unt","scortisoara", "oua","faina","lapte","zahar"}', False, 'casuta-turta-dulce.jpg'),
-
-('Croissant', 'Un răsfăț pufos și dulce... mda... dulce... dacă nu încurcă Dorelina, iar, sarea cu zahărul!!!', 5 , 150, 285, 'patiserie', 'comuna', '{"faina","lapte","zahar/sare","unt","ciocolata","migdale"}', False, 'croissant.jpg'),
-
-('Prajitura căpșuni', 'Prăjitura se face doar cu comandă specială, fiindcă apoi o comandăm și noi la rândul nostru la cofetăria vecină.', 15 , 180, 385, 'cofetarie', 'comanda speciala', '{"faina","lapte","zahar", "capsuni","unt","gelatina"}', False, 'prajitura-capsuni.jpg'),
-
-('Nasturei cu dulceață', 'Pentru când năstureii normali cedează fiindcă ați mâncat prea multă dulceață', 20.5 , 350, 700, 'patiserie', 'comuna', '{"migdale", "faina","lapte","zahar","unt","dulceata"}', False, 'nasturei-dulceata.jpg'),
+CREATE TABLE limbi (
+    id SERIAL PRIMARY KEY,
+    nume VARCHAR(50) NOT NULL
+);
 
 
-('Bomboane de ciocolată pe băț', 'Bățul e cel comestibil, nu bomboana.', 6, 100, 210,'cofetarie', 'pentru copii', '{"ciocolata", "zahar", "lapte", "alune", "faina"}', False, 'bomboane-ciocolata-bat.jpg'),
+CREATE TABLE grupe_varsta (
+    id SERIAL PRIMARY KEY,
+    nume VARCHAR(100) NOT NULL,
+    descriere VARCHAR(255)
+);
 
-('Înghețată fumătoare', 'Din când în când, tușește... Dar nu are COVID!', 18.5 , 225, 370, 'gelaterie', 'comuna', '{"smantana","lapte","migdale", "dulceata","zahar","vanilie","ciocolata", "frisca"}', False, 'inghetata-fumatoare.jpg'),
+CREATE TABLE subcategorii (
+    id SERIAL PRIMARY KEY,
+    nume VARCHAR(100) NOT NULL,
+    categorie_parinte tip_categorie NOT NULL
+);
 
+CREATE TABLE produse (
+    id SERIAL PRIMARY KEY,
+    nume VARCHAR(255) NOT NULL,
+    descriere TEXT NOT NULL,
+    imagine VARCHAR(255) NOT NULL,
+    categorie_mare tip_categorie NOT NULL,
+    
+    subcategorie_id INTEGER REFERENCES subcategorii(id),
+    grupa_varsta_id INTEGER REFERENCES grupe_varsta(id),
+    limba_id INTEGER REFERENCES limbi(id),
+    
+    pret DECIMAL(10, 2) NOT NULL,
+    durata_minute INTEGER NOT NULL, -- 
+    data_adaugare DATE NOT NULL,
+    culoare_dominanta VARCHAR(50) NOT NULL, -- 
+    componente VARCHAR(255) NOT NULL, -- 
+    admite_voucher BOOLEAN NOT NULL
+);
 
-('Înghețată multicoloră', 'Când storci un curcubeu peste înghețată... Ediție limitată; fabricăm doar după ploaie.', 12 , 120, 270, 'gelaterie', 'editie limitata', '{"smantana","lapte","migdale", "dulceata","zahar","vanilie","ciocolata", "frisca"}', False, 'inghetata-multicolora.jpg'),
+CREATE TABLE utilizatori (
+    id SERIAL PRIMARY KEY,
+    prenume VARCHAR(100) NOT NULL,
+    nume VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    parola_hash VARCHAR(255) NOT NULL,
+    puncte_fidelitate INTEGER DEFAULT 0,
+    data_inregistrare TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
+CREATE TABLE comenzi (
+    id SERIAL PRIMARY KEY,
+    utilizator_id INTEGER REFERENCES utilizatori(id),
+    total DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'În procesare',
+    adresa_livrare TEXT NOT NULL,
+    data_plasare TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-('Brioșă cu înghețată', 'Nu încercam să fim creativi... Dorelina a încurcat iar rețetele. Măcar are culoare roz', 14 , 235, 340, 'gelaterie', 'pentru copii', '{"frisca", "smantana", "lapte", "ceva roz", "faina","zahar","vanilie"}', False, 'briosa-inghetata.jpg'),
+CREATE TABLE produse_comenzi (
+    id SERIAL PRIMARY KEY,
+    comanda_id INTEGER REFERENCES comenzi(id) ON DELETE CASCADE,
+    produs_id INTEGER REFERENCES produse(id),
+    cantitate INTEGER NOT NULL,
+    pret_achizitie DECIMAL(10, 2) NOT NULL
+);
 
-('Înghețată generică', 'Când bușim așa de tare rețeta încât nu se mai încadrează în niuna dintre celelalte categorii.', 8, 90, 130, 'gelaterie','comuna','{"frisca", "smantana", "lapte", "ceva roz", "faina","zahar","vanilie"}', False, 'inghetata-generica.jpg'),
+CREATE TABLE wishlist (
+    id SERIAL PRIMARY KEY,
+    utilizator_id INTEGER REFERENCES utilizatori(id) ON DELETE CASCADE,
+    produs_id INTEGER REFERENCES produse(id) ON DELETE CASCADE,
+    data_adaugarii TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(utilizator_id, produs_id)
+);
 
-('Imagine cu înghețată', 'Pentru cei aflați la dietă.', 5, 10,10,'gelaterie', 'comuna', '{"hârtie", "tuș"}', False, 'imagine-cu-inghetata.jpg'),
+INSERT INTO limbi (nume) VALUES ('Română'), ('Engleză'), ('Independent lingvistic');
 
+INSERT INTO grupe_varsta (nume, descriere) VALUES 
+('Bebeluși (0-1 ani)', 'Jucării sigure, fără piese mici'),
+('Copii mici (1-3 ani)', 'Dezvoltare motorie și cognitivă'),
+('Preșcolari (4-6 ani)', 'Învățare prin joacă'),
+('Școlari (7-12 ani)', 'Jocuri educative și de strategie ușoară'),
+('Adolescenți și Adulți (13+)', 'Strategie complexă, hobby și petrecere');
 
-('Bomboane colorate', 'Pentru copiii care doresc să afle devreme cum e o vizită la dentist.', 7, 150,340,'cofetarie', 'pentru copii', '{"zahar", "ciocolata","lapte"}', False, 'bomboane-colorate.jpg');
+INSERT INTO subcategorii (nume, categorie_parinte) VALUES 
+('Strategie', 'Jocuri de societate'),
+('Petrecere', 'Jocuri de societate'),
+('Plușuri', 'Jucarii'),
+('Construcție', 'Jucarii'),
+('Puzzle', 'Hobby'),
+('Machete', 'Hobby'),
+('Știință și Experimente', 'Educativ'),
+('Cutii deteriorate', 'Resigilate');
+
+INSERT INTO produse (nume, descriere, imagine, categorie_mare, subcategorie_id, grupa_varsta_id, limba_id, pret, durata_minute, data_adaugare, culoare_dominanta, componente, admite_voucher) VALUES 
+('Catan - Jocul de Baza', 'Joc clasic de negociere și strategie.', '/imagini/catan.jpg', 'Jocuri de societate', 1, 5, 1, 189.99, 90, '2023-01-15', 'Albastru', 'tabla, carti, zaruri, pioni, cartonase', true),
+('Activity Original', 'Mimează și desenează.', '/imagini/activity.jpg', 'Jocuri de societate', 2, 5, 1, 120.00, 60, '2023-02-20', 'Verde', 'carti, tabla, pioni, clepsidra', false),
+('Ticket to Ride', 'Construiește rețele de trenuri.', '/imagini/ticket.jpg', 'Jocuri de societate', 1, 4, 2, 210.50, 45, '2023-05-10', 'Rosu', 'tabla, vagoane, carti', true),
+('Dixit', 'Asocieri de cuvinte și ilustrații.', '/imagini/dixit.jpg', 'Jocuri de societate', 2, 4, 3, 145.00, 30, '2023-11-05', 'Multicolor', 'carti, pioni, tabla', false),
+('Urs de plus gigant', 'Ursuleț moale.', '/imagini/urs.jpg', 'Jucarii', 3, 1, 3, 150.00, 0, '2022-12-10', 'Maro', 'plus', false),
+('Masinuta teleghidata', 'Off-road cu telecomandă.', '/imagini/masina.jpg', 'Jucarii', 4, 4, 3, 85.99, 20, '2024-03-12', 'Rosu', 'masinuta, telecomanda, acumulator', true),
+('Set cuburi lemn', 'Piese pentru construit.', '/imagini/cuburi.jpg', 'Jucarii', 4, 2, 3, 65.00, 0, '2023-08-25', 'Multicolor', 'cuburi, figurine, indicatoare', true),
+('Puzzle 1000 piese', 'Castel medieval noaptea.', '/imagini/puzzle.jpg', 'Hobby', 5, 5, 3, 55.00, 300, '2023-04-18', 'Albastru', 'piese carton', false),
+('Macheta Avion', 'Se asamblează fără lipici.', '/imagini/avion.jpg', 'Hobby', 6, 5, 2, 110.00, 180, '2023-09-30', 'Alb', 'piese plastic, instructiuni', true),
+('Telescop incepatori', 'Pentru observarea lunii.', '/imagini/telescop.jpg', 'Educativ', 7, 4, 1, 250.00, 0, '2023-06-01', 'Negru', 'telescop, trepied, lentile', true),
+('Kit chimie', 'Experimente sigure.', '/imagini/chimie.jpg', 'Educativ', 7, 4, 1, 130.00, 45, '2023-10-22', 'Verde', 'eprubete, substante, ochelari', false),
+('Catan Resigilat', 'Cutie lovita.', '/imagini/catan_res.jpg', 'Resigilate', 8, 5, 1, 140.00, 90, '2024-05-01', 'Albastru', 'tabla, carti, zaruri, pioni', false),
+('Activity Junior', 'Versiune pentru cei mici.', '/imagini/act_jr.jpg', 'Jocuri de societate', 2, 4, 1, 99.00, 45, '2024-01-10', 'Galben', 'carti, pioni, tabla', false),
+('Lego Orasul', 'Piese de constructie.', '/imagini/lego.jpg', 'Jucarii', 4, 3, 3, 300.00, 120, '2024-02-15', 'Multicolor', 'piese plastic, manual', true),
+('Vopsele acrilice', 'Set de 24 culori.', '/imagini/vopsele.jpg', 'Hobby', 5, 5, 3, 75.00, 0, '2024-03-20', 'Multicolor', 'tuburi vopsea, pensule', false),
+('Microscop copii', 'Include lamele pregatite.', '/imagini/microscop.jpg', 'Educativ', 7, 4, 1, 180.00, 0, '2024-04-10', 'Alb', 'microscop, lamele, penseta', true);
+
+INSERT INTO utilizatori (prenume, nume, email, parola_hash, puncte_fidelitate) VALUES 
+('Cosmin', 'Cherciu', 'cosmin@example.com', 'hash_parola_aici', 150),
+('Ana', 'Popescu', 'ana@example.com', 'hash_parola_aici', 20);
+
+INSERT INTO comenzi (utilizator_id, total, status, adresa_livrare) VALUES 
+(1, 189.99, 'Finalizată', 'București, Sector 1'),
+(2, 45.00, 'În procesare', 'Cluj-Napoca');
+
+INSERT INTO produse_comenzi (comanda_id, produs_id, cantitate, pret_achizitie) VALUES 
+(1, 1, 1, 189.99),
+(2, 5, 1, 45.00);
+
+INSERT INTO wishlist (utilizator_id, produs_id) VALUES 
+(1, 2),
+(1, 8);

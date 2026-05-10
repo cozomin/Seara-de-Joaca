@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -6,9 +5,9 @@
 }
 
 body {
-  --culoare_fundal: #F5C333;
+  --culoare_fundal: rgb(245, 195, 51, 0.8);
   --culoare_contur: #33C0F5;
-  background-color: var(--culoare_fundal);
+  background-color: var(--culoare_fundal) !important;
   font-family: "Nunito", "Comic Sans MS", sans-serif;
   overflow-x: hidden;
 }
@@ -23,6 +22,18 @@ p {
   margin-bottom: 10px;
 }
 
+#video-fundal {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 hr {
   width: 100%;
   border: none;
@@ -31,6 +42,7 @@ hr {
   margin: 2em 0;
   position: relative;
   overflow: visible;
+  opacity: 1;
 }
 
 hr::before {
@@ -122,18 +134,17 @@ main {
 ::selection {
   background-color: var(--culoare_contur);
   color: var(--culoare_fundal);
-  text-shadow: none; /* Opțional, pentru o vizibilitate mai bună */
+  text-shadow: none;
 }
 
-/* --- 3. Text care se plimbă orizontal --- */
 .container-mesaj-animat {
   width: 100%;
-  overflow: hidden; /* CRITIC: previne apariția scrollbar-ului orizontal */
-  background-color: #3B51A5; /* Culoarea din antet */
+  overflow: hidden;
+  background-color: #3B51A5;
   color: white;
   padding: 10px 0;
   box-sizing: border-box;
-  white-space: nowrap; /* Asigură că textul rămâne pe un singur rând */
+  white-space: nowrap;
   margin-bottom: 20px;
 }
 
@@ -142,39 +153,32 @@ main {
   margin: 0;
   font-weight: bold;
   font-size: 1.2rem;
-  /* Animația durează 15 secunde, viteză constantă, se repetă la infinit */
   animation: plimbare-text 15s linear infinite;
 }
 
 @keyframes plimbare-text {
   0% {
-    transform: translateX(100vw); /* Începe din afara ecranului, în dreapta */
+    transform: translateX(100vw);
   }
   100% {
-    transform: translateX(-100%); /* Iese complet din ecran, în stânga */
+    transform: translateX(-100%);
   }
 }
-/* --- 4. Background fix la scroll cu animație --- */
 .bg-animat-fix {
-  /* Setăm background-ul fix */
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* Animația de schimbare a imaginilor (durează 10 secunde) */
   animation: schimba-fundal 10s infinite alternate;
-  /* Puțin padding pentru a ne asigura că secțiunea are înălțime dacă e folosită ca div */
   padding: 100px 20px;
   color: white;
 }
 
 @keyframes schimba-fundal {
   0%, 45% {
-    /* Imaginea 1 */
     background-image: url("/resurse/imagini/start_joc_800w.jpg");
   }
   55%, 100% {
-    /* Imaginea 2 */
     background-image: url("/resurse/imagini/start_jucarie_800w.jpg");
   }
 }
@@ -514,14 +518,12 @@ html {
   width: 100%;
   transform-origin: bottom;
   transform: scaleY(-1);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 90%), repeating-linear-gradient(to bottom, transparent 0, black 3px, transparent 6px);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 90%), repeating-linear-gradient(to bottom, transparent 0, black 3px, transparent 6px);
-  -webkit-mask-composite: source-in;
   mask-composite: intersect;
-  -webkit-mask-size: 100% 100%, 100% 200%;
   mask-size: 100% 100%, 100% 200%;
   opacity: 0.6;
   pointer-events: none;
+  font-style: oblique;
 }
 
 .water-text:hover::after {
@@ -531,11 +533,9 @@ html {
 @keyframes ripple-movement {
   from {
     mask-position: 0 0, 0 0;
-    -webkit-mask-position: 0 0, 0 0;
   }
   to {
     mask-position: 0 0, 0 12px;
-    -webkit-mask-position: 0 0, 0 12px;
   }
 }
 .efect-duotone {

@@ -7,6 +7,7 @@
     <meta name="keywords" content="despre noi,  Seara de Joacă, joc, jocuri, jucarii, contact, seara, conctact magazin, magazin jucarii">
 
     <%- include('../fragmente/head.ejs') %>
+    <link rel="stylesheet" href="resurse/css/tabel.css" type="text/css"/>
 
 </head>
 
@@ -16,6 +17,7 @@
     <main>
 
         <div id="grid-pagina">
+            
 
             <section id="welcome">
                 <div>
@@ -41,7 +43,7 @@
                 </div>
             </section>
 
-            <section id="diverse">
+            <section id="diverse" class = "bg-animat-fix">
                 <div class="diverse-item" id="valori">
                     <h2>Valorile care ne ghidează</h2>
                     <article>
@@ -52,6 +54,57 @@
                         <h3><i class="fa-solid fa-leaf" ></i> Educație prin joacă</h3>
                         <p>Susținem dezvoltarea copiilor prin jocuri educative, puzzle-uri și jucării interactive care le stimulează creativitatea, răbdarea și logica.</p>
                     </article>
+                </div>
+            </section>
+            
+            <section class="ghid" id="ghid-jucatori" style="grid-column: 1 / -1;">
+                <h2>Ghidul nostru pentru Seri de Joacă</h2>
+                <p>La <em>Seara de Joacă</em> credem că există un joc perfect pentru fiecare persoană. Iată cum ne clasificăm recomandările pentru clienții noștri:</p>
+                
+                <div class="container-tabel">
+                    <table id="tabel-transpus">
+                       
+                        <caption>Promisiunea noastră: Consiliere personalizată pentru fiecare categorie de mai sus!</caption>
+                        <thead>
+                            <tr>
+                                <th>Nivel Experiență</th>
+                                <th>Vârstă Recomandată</th>
+                                <th>Durată Medie</th>
+                                <th>Mecanică Principală</th>
+                                <th>Exemplu din Magazin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Explorator (Copii)</td>
+                                <td>3 - 7 ani</td>
+                                <td>15 - 30 min</td>
+                                <td>Educativ / Dexteritate</td>
+                                <td>Cuburi de construcție</td>
+                            </tr>
+                            <tr>
+                                <td>Familie (Începători)</td>
+                                <td>8+ ani</td>
+                                <td>30 - 60 min</td>
+                                <td>Creativitate / Party</td>
+                                <td>Dixit / Jocuri UNO</td>
+                            </tr>
+                            <tr>
+                                <td>Tactic (Intermediari)</td>
+                                <td>10+ ani</td>
+                                <td>1 - 2 ore</td>
+                                <td>Strategie / Resurse</td>
+                                <td>Coloniștii din Catan</td>
+                            </tr>
+                            <tr>
+                                <td>Veteran (Avansați)</td>
+                                <td>14+ ani</td>
+                                <td>Peste 2 ore</td>
+                                <td>Mister / Roleplay (RPG)</td>
+                                <td>Escape Room / D&D</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 

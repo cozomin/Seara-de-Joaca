@@ -1,0 +1,167 @@
+
+$primary-color: #2c3e50;
+$accent-color: #e67e22;
+$bg-light: #f4f7f6;
+$border-color: #ddd;
+$text-dark: #333;
+$shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filtru-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: $shadow;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-left: 5px solid $accent-color;
+
+  div {
+    flex: 1 1 200px;
+    
+    label {
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="text"], 
+    input[type="range"], 
+    select, 
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+  }
+
+  #infoRange {
+    color: $accent-color;
+    font-weight: bold;
+  }
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.3s;
+  margin: 5px;
+
+  &#filtrare { background-color: #27ae60; color: white; }
+  &#resetare { background-color: #c0392b; color: white; }
+  &[id^="sort"] { background-color: $primary-color; color: white; }
+  &#calculeazaPret { background-color: $accent-color; color: white; }
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+}
+
+.grid-produse {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 25px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.produs {
+  background: white;
+  border: 1px solid $border-color;
+  padding: 20px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+  }
+
+  h3 {
+    margin-top: 0;
+    border-bottom: 2px solid $bg-light;
+    padding-bottom: 10px;
+    
+    a {
+      text-decoration: none;
+      color: $primary-color;
+      &:hover { color: $accent-color; }
+    }
+  }
+
+  .prod-layout {
+    display: flex;
+    gap: 20px;
+
+    .col-stanga {
+      flex: 1;
+      img {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .val-pret {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #27ae60;
+      }
+    }
+
+    .col-dreapta {
+      flex: 2;
+      
+      details {
+        background: $bg-light;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+
+        summary {
+          cursor: pointer;
+          font-weight: bold;
+          outline: none;
+        }
+
+        ul {
+          list-style: none;
+          padding: 10px 0 0 0;
+          
+          li {
+            padding: 3px 0;
+            border-bottom: 1px dashed $border-color;
+            
+            b { color: $primary-color; }
+            i { font-style: italic; color: #555; }
+          }
+        }
+      }
+
+      .val-descriere {
+        font-size: 0.9em;
+        line-height: 1.4;
+        color: #666;
+      }
+    }
+  }
+}
+
+.Jocuridesocietate { border-top: 4px solid #3498db; }
+.Jucarii { border-top: 4px solid #f1c40f; }
+.Hobby { border-top: 4px solid #9b59b6; }
+.Educativ { border-top: 4px solid #2ecc71; }
+.Resigilate { border-top: 4px solid #e74c3c; }

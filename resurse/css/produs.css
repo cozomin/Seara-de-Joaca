@@ -1,0 +1,59 @@
+#art-produs {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+#art-produs h3 {
+  width: 100%;
+  font-size: 2em;
+  color: #2c3e50;
+  text-align: center;
+  border-bottom: 3px solid #e67e22;
+  padding-bottom: 15px;
+}
+#art-produs .imag-produs {
+  flex: 1 1 400px;
+  margin: 0;
+}
+#art-produs .imag-produs img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+#art-produs .detalii-text {
+  flex: 1 1 400px;
+}
+#art-produs .detalii-text p {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+#art-produs .detalii-text p b {
+  color: #2c3e50;
+  display: inline-block;
+  width: 180px;
+}
+#art-produs .detalii-text p .pret {
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+#art-produs .detalii-text .descriere {
+  line-height: 1.6;
+  color: #444;
+  font-style: italic;
+}
+
+.imag-produs img {
+  transition: transform 0.3s ease;
+}
+.imag-produs img:hover {
+  transform: scale(1.02);
+}

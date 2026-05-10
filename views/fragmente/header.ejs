@@ -1,32 +1,36 @@
-<header id = "antet">
-    <div id = "sus">
-        <div id = "logo">
-            <picture id = "piclogo">
-                <source srcset="/resurse/imagini/logo_200w.png" media="(max-width:700px)"/>
-                <source srcset="/resurse/imagini/logo_400w.png" media="(max-width:1200px)"/>
-                <img src = "/resurse/imagini/logo_800w.png" alt = "logo" title = "logo Seara de Joacă">
-            </picture>
-        </div>
-        <div id = "nume">
-            <h1>Seara de Joacă</h1>
-        </div>
+<header id="antet">
+    <div id="logo">
+        <picture id="piclogo">
+            <source srcset="/resurse/imagini/logo_200w.png" media="(max-width:700px)"/>
+            <source srcset="/resurse/imagini/logo_400w.png" media="(max-width:1200px)"/>
+            <img src="/resurse/imagini/logo_800w.png" alt="logo" title="logo Seara de Joacă">
+        </picture>
+    </div>
+
+    <div id="nume">
+        <h1>Seara de Joacă</h1>
+    </div>
+    
+    <div class="d-flex align-items-center form-check form-switch" id = "n-switch">
+        <input class="n-check form-check-input" type="checkbox" id="btn-tema">
+        <label class="n-form form-check-label ms-1" for="btn-tema">
+            <i id="icon-tema" class="fa-solid fa-sun text-warning"></i>
+        </label>
     </div>
 
     <nav>
         <label id="hamburger" for="ch-menu">
-
-            <span class="bar" id= "bar-1"></span>
-            <span class="bar" id= "bar-2"></span>
-            <span class="bar" id= "bar-3"></span>
-
+            <span class="bar" id="bar-1"></span>
+            <span class="bar" id="bar-2"></span>
+            <span class="bar" id="bar-3"></span>
         </label>
         <input type="checkbox" id="ch-menu"/>
-        <!--                        <i class="fa-solid fa-arrow-right" id = "sageata"></i>-->
+        
         <ul class="meniu">
             <li>
                 <div class="text-icon" id="acasa"><a href="/">Acasă</a></div>
                 <div class="imag-icon" id="acasa-mediu">
-                    <span class="fas fa-regular fa-house"></span>
+                    <a class="fas fa-regular fa-house" href="/"></a>
                 </div>
                 <ul>
                     <li><a href="/#welcome">Bun venit</a></li>
@@ -40,54 +44,31 @@
             <li>
                 <div class="text-icon" id="despre_noi"><a href="/despre">Despre noi</a></div>
                 <div class="imag-icon" id="acasa-mediu">
-                    <i class="fa fa-circle-info"></i>
+                    <a class="fa fa-circle-info" href="/despre"></a>
                 </div>
             </li>
             <li>
                 <div class="text-icon"><a href="/produse">Produse</a></div>
-                <div class="imag-icon" ><span class="fas fa-solid fa-dice"></span></div>
+                <div class="imag-icon" ><a class="fas fa-solid fa-dice" href="/produse"></a></div>
                 <ul>
-                    <li><a href="magazin.ejs#jocuri-societate">Jocuri de societate</a>
-                        <ul>
-                            <li><a href="magazin.ejs#strategie">Strategie</a></li>
-                            <li><a href="magazin.ejs#abstracte">Abstracte</a></li>
-                            <li><a href="magazin.ejs#petrecere">Petrecere</a></li>
-                            <li><a href="magazin.ejs#familie">Familie</a></li>
-                            <li><a href="magazin.ejs#trivia">Trivia</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="magazin.ejs#jucarii-copii">Jucării pentru copii</a>
-                        <ul>
-                            <li><a href="magazin.ejs#plusuri">Plușuri și păpuși</a></li>
-                            <li><a href="magazin.ejs#masini">Mașini</a></li>
-                            <li><a href="magazin.ejs#trenuri">Trenuri</a></li>
-                            <li><a href="magazin.ejs#avioane">Avioane</a></li>
-                            <li><a href="magazin.ejs#interactive">Jucării interactive</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="magazin.ejs#educationale">Jocuri și jucării educaționale</a></li>
-                    <li><a href="magazin.ejs#hobby">Hobby</a>
-                        <ul>
-                            <li><a href="magazin.ejs#figurine">Figurine</a></li>
-                            <li><a href="magazin.ejs#puzzle">Puzzle</a></li>
-                            <li><a href="magazin.ejs#machete">Machete 3D</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="magazin.ejs#resigilate">Resigilate</a></li>
+                    <li><a href="/produse">Toate produsele</a></li>
+                    <% if (locals.optiuni) { %>
+                        <% for (let opt of locals.optiuni) { %>
+                            <li><a href="/produse?tip=<%- opt.unnest %>"><%- opt.unnest %></a></li>
+                        <% } %>
+                    <% } %>
                 </ul>
             </li>
 
             <li>
                 <div class="text-icon"><a href="cont.ejs">Cont client</a></div>
-                <div class="imag-icon" ><span class="fa-solid fa-circle-user"></span></div>
-                <ul>
+                <div class="imag-icon"><a class="fa-solid fa-circle-user"></a></div> <ul>
                     <li><a href="cont.ejs#date-personale">Date personale</a></li>
                     <li><a href="cont.ejs#istoric-comenzi">Istoric comenzi</a></li>
                     <li><a href="cont.ejs#wishlist">Wishlist</a></li>
                     <li><a href="cont.ejs#puncte-loialitate">Puncte de loialitate</a></li>
                 </ul>
             </li>
-
         </ul>
     </nav>
 </header>

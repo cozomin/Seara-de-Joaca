@@ -10,11 +10,15 @@
     <title>Seara de Joacă</title>
 
     <%- include('../fragmente/head.ejs') %>
-   <link rel="stylesheet" href="/resurse/scss_ejs/galerie-animata.css?n=<%= N_galerie %>" type="text/css"/>
+   <link rel="stylesheet" href="/galerie-animata.css?n=<%= N_galerie %>" type="text/css"/>
 </head>
 
 <body>
     <%- include('../fragmente/header.ejs') %>
+
+    <video autoplay loop muted playsinline id="video-fundal">
+        <source src="/resurse/video/video_fundal.mp4" type="video/mp4">
+    </video>
 
     <main>
         <div id = "watermark"><p id="watermark-item">Cherciu<br>Cosmin-Alexandru</p></div>
@@ -85,14 +89,14 @@
                 <section id="sectiune-galerie">
                     <h2>Galerie Imagini</h2>
 
-                    <%- include('../fragmente/galerie_statica.ejs', { imagini: imagini }) %>
+                    <%- include('../fragmente/galerie_statica.ejs', { imagini: locals.imagini }) %>
                 </section>
 
-                <section id="galerie-dinamica-animata">
+                <!-- <section id="galerie-dinamica-animata">
                     <h2>Galerie Aleatoare Animată (<%= N_galerie %> imagini)</h2>
                     
                     <%- include("../fragmente/galerie_animata.ejs", { imagini: imaginiGalerieAnimata }) %>
-                </section>
+                </section> -->
 
                 <hr>
 
@@ -110,7 +114,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title text-primary">Coloniștii din Catan</h4>
                                 <p class="card-text">Negocieri și resurse. Descoperă insula Catan alături de prieteni într-un joc clasic de strategie.</p>
-                                <a href="#" class="btn btn-primary mt-auto shadow-sm">Detalii joc</a>
+                                <a href="#" class="btn btn-warning mt-auto shadow-sm">Detalii joc</a>
                             </div>
                         </div>
                     </div>
