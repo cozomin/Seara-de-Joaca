@@ -1,36 +1,23 @@
 window.addEventListener("DOMContentLoaded", function () {
-    const btnTema = document.getElementById("btn-tema");
-    const iconTema = document.getElementById("icon-tema");
+    const switchTema = document.getElementById("schimba_tema");
 
-    function seteazaTema(isDark) {
-        if (isDark) {
-            document.body.classList.add("dark");
-            if (btnTema) btnTema.checked = true;
-            if (iconTema) {
-                iconTema.classList.remove("fa-sun");
-                iconTema.classList.add("fa-moon");
-            }
-            localStorage.setItem("tema", "dark");
-        } else {
-            document.body.classList.remove("dark");
-            if (btnTema) btnTema.checked = false;
-            if (iconTema) {
-                iconTema.classList.remove("fa-moon");
-                iconTema.classList.add("fa-sun");
-            }
-            localStorage.removeItem("tema");
+    function aplicaTema(tema) {
+        document.body.setAttribute("data-bs-theme", tema);
+        
+        if (switchTema) {
+            switchTema.checked = (tema === "dark");
         }
     }
 
-    if (localStorage.getItem("tema") === "dark") {
-        seteazaTema(true);
-    } else {
-        seteazaTema(false);
-    }
+    const temaSalvata = localStorage.getItem("tema") || "light";
+    aplicaTema(temaSalvata);
 
-    if (btnTema) {
-        btnTema.addEventListener("change", function () {
-            seteazaTema(this.checked);
+    if (switchTema) {
+        switchTema.addEventListener("change", function () {
+            const nouaTema = this.checked ? "dark" : "light";
+            
+            aplicaTema(nouaTema);
+            localStorage.setItem("tema", nouaTema);
         });
     }
 });

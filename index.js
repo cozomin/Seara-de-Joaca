@@ -7,6 +7,9 @@ const sharp= require("sharp");
 const ejs=require('ejs');
 const pg = require("pg");
 
+// const AccesBD= require("./module_proprii/accesbd.js");
+// const {Utilizator}=require("./module_proprii/utilizator.js")
+// const Drepturi = require("./module_proprii/drepturi.js");
 
 //Livereload 
 
@@ -37,6 +40,7 @@ obGlobal={
     folderScss: path.join(__dirname,"resurse/scss"),
     folderCss: path.join(__dirname,"resurse/css"),
     folderBackup: path.join(__dirname,"backup"),
+    optiuniMeniu:[]
 }
 
 console.log("Folder index.js", __dirname);
@@ -47,22 +51,26 @@ console.log("Cale fisier", __filename);
 
 client=new pg.Client({
     database:"cti",
-    user:"postgres",
-    password:"SQLpa55",
+    user:"cosmin2",
+    password:"cosmin2",
     host:"localhost",
     port:5432
 })
 
 client.connect()
 
-app.use(async function(req, res, next) {
-    try {
-        let rez = await client.query("select unnest(enum_range(null::tip_categorie))");
-        res.locals.optiuni = rez.rows; // Devine automat disponibil in orice fisier .ejs ca locals.optiuni
-    } catch(err) {
-        console.error("Eroare preluare enum categorii", err);
-        res.locals.optiuni = [];
+client.query("select unnest(enum_range(null::tip_categorie))", function(err, rez) {
+    if (err) {
+        console.error("Eroare la preluarea categoriilor:", err);
+    } else {
+        console.log("Categorii meniu preluate cu succes!");
+        obGlobal.optiuniMeniu = rez.rows; 
     }
+});
+
+app.use(function(req, res, next) {
+    res.locals.optiuni = obGlobal.optiuniMeniu;
+    
     next();
 });
 
@@ -87,6 +95,7 @@ for (let folder of vect_foldere){
 
 //E4.6 folderul de resurse este definit ca unul static
 app.use("/resurse",express.static(path.join(__dirname, "resurse")));
+app.use("/imagini", express.static(path.join(__dirname, "resurse/imagini")));
 app.use("/dist",express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 
 app.get("/favicon.ico", function(req, res){
@@ -95,7 +104,7 @@ app.get("/favicon.ico", function(req, res){
 
 //E4.8
 //E4.8
-app.get(["/", "/index", "/home"], async function(req, res) {
+app.get(["/", "/index", "/home"], function(req, res) {
     let imaginiValide = obGlobal.obImagini.imagini.filter(img => img.nume && img.nume.length < 12);
     let nr_optiuni = [4, 9, 16];
     
@@ -140,10 +149,10 @@ app.get(["/", "/index", "/home"], async function(req, res) {
         let caleFisMicAbs = path.join(caleAbsMic, numeFis + ".webp");
 
         if (!fs.existsSync(caleFisMediuAbs) && fs.existsSync(caleFisAbs)) {
-            await sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+            sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
         }
         if (!fs.existsSync(caleFisMicAbs) && fs.existsSync(caleFisAbs)) {
-            await sharp(caleFisAbs).resize(150).toFile(caleFisMicAbs);
+            sharp(caleFisAbs).resize(150).toFile(caleFisMicAbs);
         }
     }
 
@@ -204,52 +213,86 @@ app.get("/galerie", function(req, res){
 })
 
 
-app.get("/produse", function(req, res){
-    let clauzaWhere=""
-    if (req.query.tip)
-        clauzaWhere=` where categorie_mare='${req.query.tip}'`
-    client.query(`select * from produse ${clauzaWhere}`, function(err, rez){
-        if (err){
-            console.log("Eroare", err)
-            afisareEroare(res,2)
-        }
-        else{
-            client.query("select * from unnest(enum_range(null::tip_categorie))", function(err, rezOptiuni){
-                if (err){
-                    afisareEroare(res,2)
-                }
-                else{
-                    res.render("pagini/produse",{
-                        produse:rez.rows,
-                        optiuni:rezOptiuni.rows
-                    })
-                }
-            })
+app.get("/produse", function(req, res) {
+    let clauzaWhere = "";
+    if (req.query.tip) {
+        clauzaWhere = ` where p.categorie_mare='${req.query.tip}'`;
+    }
+    
+    let querySql = `
+        select p.*, g.nume as varsta_recomandata 
+        from produse p 
+        left join grupe_varsta g on p.grupa_varsta_id = g.id
+        ${clauzaWhere}
+    `;
+
+    Promise.all([
+        client.query(querySql),
+        client.query("select unnest(enum_range(null::tip_categorie)) as unnest"),
+        client.query("select min(pret) as min_pret, max(pret) as max_pret from produse"),
+        client.query("select distinct culoare_dominanta from produse where culoare_dominanta is not null"),
+        client.query("select distinct nume from grupe_varsta"),
+        client.query("select distinct extract(month from data_adaugare) as luna from produse order by luna")
+    ])
+    .then(function(rezultate) {
+        let rezProduse = rezultate[0];
+        let rezOptiuni = rezultate[1];
+        let rezPret = rezultate[2];
+        let rezCulori = rezultate[3];
+        let rezVarste = rezultate[4];
+        let rezLuni = rezultate[5];
+
+        const numeLuni = ['', 'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+        let luniDinamice = rezLuni.rows.map(rand => numeLuni[rand.luna]);
+
+        let produsRandom = rezProduse.rows.length > 0 
+            ? rezProduse.rows[Math.floor(Math.random() * rezProduse.rows.length)].nume 
+            : 'Catan';
+
+        res.render("pagini/produse", {
+            produse: rezProduse.rows,
+            optiuni: rezOptiuni.rows,
+            tip_activ: req.query.tip || 'toate',
             
-        }
+            minPret: Math.floor(rezPret.rows[0].min_pret),
+            maxPret: Math.ceil(rezPret.rows[0].max_pret),
+            culori: rezCulori.rows.map(r => r.culoare_dominanta),
+            varste: rezVarste.rows.map(r => r.nume),
+            luni: luniDinamice,
+            produsExemplu: produsRandom
+        });
     })
+    .catch(function(err) {
+        console.error("Eroare la încărcarea paginii produse:", err);
+        afisareEroare(res, 2);
+    });
 });
 
 
 app.get("/produs/:id", function(req, res){
-    client.query(`select * from produse where id=${req.params.id}`, function(err, rez){
-    if (err){
-        console.log("Eroare", err)
-        afisareEroare(res,2)
-    }
-    else{
-        if (rez.rowCount==0){
-            afisareEroare(res,404,"Produs inexistent")
+    let querySql = `
+        select p.*, g.nume as varsta_recomandata 
+        from produse p 
+        left JOIN grupe_varsta g on p.grupa_varsta_id = g.id 
+        where p.id=${req.params.id}
+    `;
+
+    client.query(querySql, function(err, rez){
+        if (err){
+            console.log("Eroare", err);
+            afisareEroare(res, 2);
         }
         else{
-            
-            res.render("pagini/produs",{
-                prod:rez.rows[0],
-            })
+            if (rez.rowCount == 0){
+                afisareEroare(res, 404, "Produs inexistent");
+            }
+            else{
+                res.render("pagini/produs",{
+                    prod: rez.rows[0],
+                });
+            }
         }
-        
-    }
-})
+    });
 });
 
 //E4.B
@@ -366,15 +409,6 @@ function afisareEroare(res, identificator, titlu, text, imagine){
     });
 
 }
-
-// app.get("/galerie-animata.css", function(req, res) {
-//     compileazaScss("galerie_animata.scss", "galerie_animata.css", {
-//         culoare: "darkslateblue"
-//     });
-
-//     res.setHeader("Content-Type", "text/css");
-//     res.sendFile(path.join(obGlobal.folderCss, "galerie_animata.css"));
-// });
 
 // Filtrare imagini
 function getImaginiFiltrate() {

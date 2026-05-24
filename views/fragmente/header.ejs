@@ -1,21 +1,22 @@
 <header id="antet">
     <div id="logo">
         <picture id="piclogo">
-            <source srcset="/resurse/imagini/logo_200w.png" media="(max-width:700px)"/>
-            <source srcset="/resurse/imagini/logo_400w.png" media="(max-width:1200px)"/>
-            <img src="/resurse/imagini/logo_800w.png" alt="logo" title="logo Seara de Joacă">
+            <source srcset="/resurse/imagini/logo_200w.png" media="(max-width:700px)" />
+            <source srcset="/resurse/imagini/logo_400w.png" media="(max-width:1200px)" />
+            <img src="/resurse/imagini/logo_800w.png" alt="logo" title="logo Seara de Joacă" />
         </picture>
     </div>
 
     <div id="nume">
         <h1>Seara de Joacă</h1>
     </div>
-    
-    <div class="d-flex align-items-center form-check form-switch" id = "n-switch">
-        <input class="n-check form-check-input" type="checkbox" id="btn-tema">
-        <label class="n-form form-check-label ms-1" for="btn-tema">
-            <i id="icon-tema" class="fa-solid fa-sun text-warning"></i>
-        </label>
+
+    <div class="d-flex align-items-center">
+        <i class="fa-solid fa-sun text-warning me-2"></i>
+        <div class="form-check form-switch mb-0">
+            <input class="form-check-input" type="checkbox" role="switch" id="schimba_tema" style="cursor: pointer;">
+        </div>
+        <i class="fa-solid fa-moon text-info ms-1"></i>
     </div>
 
     <nav>
@@ -24,13 +25,16 @@
             <span class="bar" id="bar-2"></span>
             <span class="bar" id="bar-3"></span>
         </label>
-        <input type="checkbox" id="ch-menu"/>
-        
+
+        <input type="checkbox" id="ch-menu" />
+
         <ul class="meniu">
             <li>
-                <div class="text-icon" id="acasa"><a href="/">Acasă</a></div>
-                <div class="imag-icon" id="acasa-mediu">
-                    <a class="fas fa-regular fa-house" href="/"></a>
+                <div class="text-icon" id="acasa">
+                    <a href="/">Acasă</a>
+                </div>
+                <div class="imag-icon acasa-mediu">
+                    <a class="fa-solid fa-house" href="/" aria-label="Acasă"></a>
                 </div>
                 <ul>
                     <li><a href="/#welcome">Bun venit</a></li>
@@ -41,15 +45,23 @@
                     <li><a href="/#subsol">Contact</a></li>
                 </ul>
             </li>
+
             <li>
-                <div class="text-icon" id="despre_noi"><a href="/despre">Despre noi</a></div>
-                <div class="imag-icon" id="acasa-mediu">
-                    <a class="fa fa-circle-info" href="/despre"></a>
+                <div class="text-icon" id="despre_noi">
+                    <a href="/despre">Despre noi</a>
+                </div>
+                <div class="imag-icon despre-mediu">
+                    <a class="fa-solid fa-circle-info" href="/despre" aria-label="Despre noi"></a>
                 </div>
             </li>
+
             <li>
-                <div class="text-icon"><a href="/produse">Produse</a></div>
-                <div class="imag-icon" ><a class="fas fa-solid fa-dice" href="/produse"></a></div>
+                <div class="text-icon">
+                    <a href="/produse">Produse</a>
+                </div>
+                <div class="imag-icon">
+                    <a class="fa-solid fa-dice" href="/produse" aria-label="Produse"></a>
+                </div>
                 <ul>
                     <li><a href="/produse">Toate produsele</a></li>
                     <% if (locals.optiuni) { %>
@@ -61,8 +73,13 @@
             </li>
 
             <li>
-                <div class="text-icon"><a href="cont.ejs">Cont client</a></div>
-                <div class="imag-icon"><a class="fa-solid fa-circle-user"></a></div> <ul>
+                <div class="text-icon">
+                    <a href="cont.ejs">Cont client</a>
+                </div>
+                <div class="imag-icon">
+                    <a class="fa-solid fa-circle-user" href="cont.ejs" aria-label="Cont client"></a>
+                </div>
+                <ul>
                     <li><a href="cont.ejs#date-personale">Date personale</a></li>
                     <li><a href="cont.ejs#istoric-comenzi">Istoric comenzi</a></li>
                     <li><a href="cont.ejs#wishlist">Wishlist</a></li>

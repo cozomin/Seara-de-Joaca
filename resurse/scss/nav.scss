@@ -133,10 +133,10 @@ ul.meniu {
         text-decoration: none;
         color: inherit;
         display: inline-block;
-        // width: 100%;
-        // height: 100%;
+        width: 100%;
+        height: 100%;
         font-weight: bold;
-        // padding-left: 20px;
+        padding-left: 20px;
 
         &:hover{
             color: $buton-hover-text !important;
@@ -155,35 +155,35 @@ ul.meniu {
     display: inline-block;
 }
 
-@media screen and (max-width: 1200px){
-    .text-icon{
-        display: none;
-    }
+@media screen and (max-width: 1200px) {
+  .text-icon {
+    display: none;
+  }
 
-    .meniu > li {
-        padding: 0 !important;
-    }
+  .imag-icon {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
 
-    .imag-icon {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-        height: 100% !important; 
-    }
+  .imag-icon a,
+  .imag-icon span {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+  }
 
-    .imag-icon a,
-    .imag-icon span {
-        display: inline-block !important; 
-        width: auto !important; 
-        margin: 0 !important;
-        padding: 0 !important;
-        line-height: normal !important;
-    }
-
-    ul.meniu {
-        padding-left: 0;
-    }
+  ul.meniu li {
+    text-align: center;
+  }
 }
 
 
@@ -212,5 +212,52 @@ ul.meniu {
     }
 }
 
+body[data-bs-theme="dark"] {
+    ul.meniu {
+        li {
+            background-color: #2b2b2b;
+            border-color: #444444;
+            color: #e0e0e0;
+            
+            a {
+                color: #e0e0e0;
+                &:hover {
+                    color: #ffffff !important;
+                }
+            }
+        }
+
+        > li:hover {
+            background-color: #3B51A5; 
+            color: #ffffff;
+            border-color: #33C0F5; 
+            box-shadow: inset 0 0 15px rgba(51, 192, 245, 0.4); 
+
+            a:hover {
+                color: #ffffff !important;
+            }
+
+            li a::before {
+                color: $buton-hover-bg; 
+            }
+        }
+
+        > li > ul {
+            > li {
+                background-color: #1e1e1e; 
+                border-color: #333333;
+
+                &:hover {
+                    background-color: #33C0F5;
+                    color: #121212;     
+                    
+                    a {
+                        color: #121212 !important;
+                    }
+                }
+            }
+        }
+    }
+}
 
 

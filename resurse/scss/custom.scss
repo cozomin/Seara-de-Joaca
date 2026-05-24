@@ -5,6 +5,20 @@ $warning: #F5C333;
 $body-color: #1a1a1a;
 $link-color: #74B2E4;
 
+$dark-bg-main: #121212;
+$dark-bg-secundar: #161616;
+$dark-bg-card: #1e1e1e;
+$dark-text-main: #e0e0e0;
+$dark-text-secundar: #d0d0d0;
+$dark-border-subtil: #2d2d2d;
+$dark-border-accent: $secondary; 
+
+$card-border-radius: 1rem; 
+$card-border-width: 1px;
+$card-cap-bg: rgba(0, 0, 0, .03); 
+$card-spacer-y: 1.5rem; 
+$card-spacer-x: 1.5rem; 
+
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -17,7 +31,7 @@ $grid-breakpoints: (
 $border-radius: 0.75rem;    
 $border-radius-lg: 1.25rem; 
 $border-width: 2px;
-$box-shadow: 0px 4px 10px rgba(51, 192, 245, 0.3); 
+$box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08); 
 
 $h1-font-size: 2.8rem;
 $h2-font-size: 2.2rem;
@@ -36,7 +50,9 @@ $form-range-thumb-focus-box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(59, 81, 1
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 body {
-    background-color: var(--culoare_fundal) !important;
+    background-color: var(--culoare_fundal, #ffffff) !important;
+    color: var(--bs-body-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #antet a, 
@@ -59,19 +75,182 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
 }
 
-body.dark {
-    --culoare_fundal: #121212; 
-    --culoare_contur: #FFCD00; 
-    
-    color: #f0f0f0; 
+.ratio-4-3 {
+    --bs-aspect-ratio: 75%;
+}
 
-    #grid-pagina > *, .filtru-container, .produs {
-        background-color: #1e1e1e !important;
-        color: #f0f0f0;
-        border-color: var(--culoare_contur);
+body[data-bs-theme="dark"] {
+    --culoare_fundal: #{$dark-bg-main};
+    --bs-body-bg: #{$dark-bg-main};
+    --bs-body-color: #{$dark-text-main};
+    --bs-heading-color: #ffffff;
+
+    #grid-pagina > *, 
+    .placeholder-box {
+        background-color: $dark-bg-card !important;
+        color: $dark-text-main !important;
+        border: 1px solid $dark-border-subtil !important;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6) !important;
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff !important;
+        }
+        
+        p, span, b, strong, time {
+            color: $dark-text-main !important;
+        }
     }
 
-    .val-descriere {
-        color: #bbb;
+    .filtru-container, .card, .produs-single-card {
+        background-color: $dark-bg-card !important;
+        border-color: $dark-border-subtil !important;
+        box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3) !important; 
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff !important;
+        }
+
+        p, li, b, strong, span, .text-muted {
+            color: $dark-text-main !important;
+        }
+    }
+
+    #video-fundal {
+        filter: brightness(0.35) contrast(1.05);
+    }
+
+    #watermark {
+        opacity: 0.25;
+        #watermark-item {
+            color: rgba(255, 255, 255, 0.2) !important;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+        }
+    }
+
+    #antet {
+        background-color: $dark-bg-secundar !important;
+
+        border: 2px solid $dark-border-accent !important;
+        border-radius: $border-radius-lg;
+        margin-bottom: 20px;
+
+        color: #ffffff !important;
+        
+        #nume h1, h1 {
+            color: #ffffff !important;
+        }
+
+        #schimba_tema {
+            color: $dark-text-main !important;
+            text-decoration: none !important;
+
+            &:hover {
+                color: $dark-border-accent !important; 
+            }
+
+            i {
+                color: inherit !important;
+            }
+        }
+    }
+
+    a {
+        color: #8ec3ef;
+        &:hover {
+            color: lighten(#8ec3ef, 12%);
+        }
+    }
+
+    input:not([type="checkbox"]):not([type="radio"]), 
+    select, 
+    textarea {
+        background-color: #2b2b2b !important;
+        color: #ffffff !important;
+        border-color: #444444 !important;
+        
+        &:focus {
+            border-color: $dark-border-accent !important;
+            box-shadow: 0 0 0 0.25rem rgba(51, 192, 245, 0.25) !important;
+        }
+    }
+
+    section#promotii,
+    section#anunturi,
+    section#orar,
+    section#retete,
+    section#index-intrebari,
+    section#resurse-utile {
+        background-color: $dark-bg-card !important;
+        color: $dark-text-main !important;
+        border: 1px solid $dark-border-subtil !important;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6) !important;
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff !important;
+        }
+
+        p, li, time, b, strong, span {
+            color: $dark-text-main !important;
+        }
+    }
+
+    table {
+        color: $dark-text-main !important;
+        border-color: #444444 !important;
+
+        th {
+            background-color: #222222 !important;
+            color: #ffffff !important;
+            border-bottom: 2px solid #555555 !important;
+        }
+
+        td {
+            background-color: $dark-bg-card !important;
+            border-color: #444444 !important;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #2b2b2b !important;
+        }
+    }
+
+    .taburi-iframe a {
+        background-color: #2b2b2b !important;
+        color: $dark-text-main !important;
+        border: 1px solid #444444 !important;
+
+        &:hover, &:focus, &.active {
+            background-color: $primary !important; 
+            color: #ffffff !important;
+            border-color: $primary !important;
+        }
+    }
+
+    .container-iframe {
+        background-color: transparent !important;
+        border-color: #444444 !important;
+    }
+
+    #subsol {
+        background-color: $dark-bg-secundar !important;
+        color: $dark-text-secundar !important;
+        
+        border: 2px solid $dark-border-accent !important;
+        border-radius: $border-radius-lg;
+        margin-top: 25px;
+
+        h1, h2, h3 {
+            color: #ffffff !important;
+        }
+
+        #triunghi {
+            background-color: #2b2b2b !important;
+            color: $warning !important; 
+            border: 1px solid $dark-border-subtil;
+
+            &:hover {
+                background-color: #444444 !important;
+            }
+        }
     }
 }

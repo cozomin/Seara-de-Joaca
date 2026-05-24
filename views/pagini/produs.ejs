@@ -4,34 +4,92 @@
     <meta name="description" content="Află mai multe detalii despre <%- locals.prod.nume %> la magazinul Seara de Joacă.">
     <meta name="keywords" content="<%- locals.prod.nume %>, <%- locals.prod.categorie_mare %>, jocuri, magazin">
     <title>Seara de Joacă - <%- locals.prod.nume %></title>
-    <%- include("../fragmente/head") %>    
-    <link rel="stylesheet" href="/resurse/css/nav.css" type="text/css" />
-    <link rel="stylesheet" href="/resurse/css/general.css" type="text/css" />
-    <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+    <%- include("../fragmente/head") %>
+    <link rel="stylesheet" href="/resurse/css/produs.css" type="text/css">
+    <script type="text/javascript" src="/resurse/js/comparare.js"></script>
 </head>
 <body>
     <%- include("../fragmente/header") %>
 
-    <main>
-        <section>
-            <h2>Detalii Produs</h2>
-            <article id="art-produs">
-                <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                <figure class="imag-produs">
-                    <img src="<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                </figure> 
+    <main class="container my-5">
+
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden produs-single-card">
+            
+            <div class="row g-0">
                 
-                <p><b>Preț:</b> <span class="pret"><%- locals.prod.pret %> RON</span></p>
-                <p><b>Descriere:</b> <span class="descriere"><%- locals.prod.descriere %></span></p>
-                <p><b>Componente incluse:</b> <span><%- locals.prod.componente %></span></p>
-                <p><b>Categorie:</b> <span><%- locals.prod.categorie_mare %></span></p>
-                <p><b>Vârsta recomandată:</b> <span><%- locals.prod.varsta_recomandata %></span></p>
-                <p><b>Culoare dominantă:</b> <span><%- locals.prod.culoare_dominanta %></span></p>
-                <p><b>Durată medie (min):</b> <span><%- locals.prod.durata_minute %> minute</span></p>
-                <p><b>Admite utilizare voucher fidelitate:</b> <span><%- locals.prod.admite_voucher ? "Da" : "Nu" %></span></p>
-                   
-            </article>
-        </section>
+                <div class="col-md-5 col-lg-4 bg-light d-flex align-items-center justify-content-center p-5 p-md-4 border-end border-light">
+                    <img src="<%= locals.prod.imagine %>" class="img-fluid rounded-4 shadow-sm single-produs-img" alt="Copertă <%= locals.prod.nume %>">
+                </div>
+
+                <div class="col-md-7 col-lg-8 p-4 p-lg-5 d-flex flex-column">
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-secondary text-uppercase fw-bold p-2 small categorie-badge">
+                            <%= locals.prod.categorie_mare %>
+                        </span>
+                        <small class="text-muted text-uppercase fw-bold categorie-badge">
+                            <i class="bi bi-calendar3"></i> Adăugat: <time datetime="<%= locals.prod.data_adaugare.toISOString() %>">
+                                <%= locals.prod.data_adaugare.toLocaleDateString('ro-RO') %>
+                            </time>
+                        </small>
+                    </div>
+
+                    <h1 class="card-title h1 fw-bold text-dark mb-4">
+                        <%= locals.prod.nume %>
+                    </h1>
+                    
+                    <hr class="mb-4">
+
+                    <div class="mb-4 bg-light p-3 rounded">
+                        <h6 class="fw-bold mb-2 text-primary border-bottom pb-1"><i class="bi bi-list-check"></i> Toate Specificațiile</h6>
+                        <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
+                            <li><span class="text-muted">Vârstă:</span> <span class="fw-bold"><%= locals.prod.varsta_recomandata %></span></li>
+                            <li><span class="text-muted">Culoare:</span> <span class="fw-bold"><%= locals.prod.culoare_dominanta %></span></li>
+                            <li><span class="text-muted">Componente:</span> <span class="fw-bold"><%= locals.prod.componente %></span></li>
+                            <li><span class="text-muted">Durată (min):</span> <span class="fw-bold"><%= locals.prod.durata_minute %></span></li>
+                            <li><span class="text-muted">Voucher:</span> <span class="fw-bold"><%= locals.prod.admite_voucher ? 'Da' : 'Nu' %></span></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-text text-secondary mb-5 Descriere">
+                        <h5 class="h5 fw-bold text-dark mb-3 border-bottom pb-2">
+                            <i class="bi bi-text-paragraph"></i> Descrierea Jocului
+                        </h5>
+                        <p class="lead" style="line-height: 1.8; color: #555;">
+                            <%= locals.prod.descriere %>
+                        </p>
+                    </div>
+
+                    <div class="mt-auto row g-3 align-items-center pt-4 border-top">
+                        <div class="col-sm-6 text-center text-sm-start">
+                            <span class="text-muted d-block small text-uppercase fw-bold categorie-badge">Preț Produs</span>
+                            <span class="h1 mb-0 fw-bold text-success Pret">
+                                <%= locals.prod.pret %> RON
+                            </span>
+                        </div>
+                        
+                        <div class="col-sm-6 text-center text-sm-end d-flex flex-wrap justify-content-center justify-content-sm-end gap-2">
+    
+                            <button class="btn btn-info btn-lg rounded-pill px-4 text-white fw-bold btn-compara" 
+                                data-id="<%- locals.prod.id %>" 
+                                data-nume="<%- locals.prod.nume %>" 
+                                data-pret="<%- locals.prod.pret %>" 
+                                data-culoare="<%- locals.prod.culoare_dominanta %>" 
+                                data-varsta="<%- locals.prod.varsta_recomandata %>"
+                                data-voucher="<%- locals.prod.admite_voucher %>">
+                                <i class="bi bi-arrow-left-right"></i> Compară
+                            </button>
+
+                            <a href="/produse" class="btn btn-outline-primary btn-lg rounded-pill px-4 categorie-badge">
+                                <i class="bi bi-arrow-left"></i> Înapoi la listă
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <%- include("../fragmente/footer") %>

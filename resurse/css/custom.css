@@ -112,7 +112,7 @@
   --bs-border-radius-xxl: 2rem;
   --bs-border-radius-2xl: var(--bs-border-radius-xxl);
   --bs-border-radius-pill: 50rem;
-  --bs-box-shadow: 0px 4px 10px rgba(51, 192, 245, 0.3);
+  --bs-box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
   --bs-box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   --bs-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
   --bs-box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
@@ -4295,19 +4295,19 @@ textarea.form-control-lg {
 }
 
 .card {
-  --bs-card-spacer-y: 1rem;
-  --bs-card-spacer-x: 1rem;
+  --bs-card-spacer-y: 1.5rem;
+  --bs-card-spacer-x: 1.5rem;
   --bs-card-title-spacer-y: 0.5rem;
   --bs-card-title-color: ;
   --bs-card-subtitle-color: ;
-  --bs-card-border-width: var(--bs-border-width);
+  --bs-card-border-width: 1px;
   --bs-card-border-color: var(--bs-border-color-translucent);
-  --bs-card-border-radius: var(--bs-border-radius);
+  --bs-card-border-radius: 1rem;
   --bs-card-box-shadow: ;
-  --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
-  --bs-card-cap-padding-y: 0.5rem;
-  --bs-card-cap-padding-x: 1rem;
-  --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+  --bs-card-inner-border-radius: calc(1rem - 1px);
+  --bs-card-cap-padding-y: 0.75rem;
+  --bs-card-cap-padding-x: 1.5rem;
+  --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
   --bs-card-cap-color: ;
   --bs-card-height: ;
   --bs-card-color: ;
@@ -11861,7 +11861,9 @@ textarea.form-control-lg {
   }
 }
 body {
-  background-color: var(--culoare_fundal) !important;
+  background-color: var(--culoare_fundal, #ffffff) !important;
+  color: var(--bs-body-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #antet a,
@@ -11884,16 +11886,258 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: #ffffff !important;
 }
 
-body.dark {
+.ratio-4-3 {
+  --bs-aspect-ratio: 75%;
+}
+
+body[data-bs-theme=dark] {
   --culoare_fundal: #121212;
-  --culoare_contur: #FFCD00;
-  color: #f0f0f0;
+  --bs-body-bg: #121212;
+  --bs-body-color: #e0e0e0;
+  --bs-heading-color: #ffffff;
 }
-body.dark #grid-pagina > *, body.dark .filtru-container, body.dark .produs {
+body[data-bs-theme=dark] #grid-pagina > *,
+body[data-bs-theme=dark] .placeholder-box {
   background-color: #1e1e1e !important;
-  color: #f0f0f0;
-  border-color: var(--culoare_contur);
+  color: #e0e0e0 !important;
+  border: 1px solid #2d2d2d !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6) !important;
 }
-body.dark .val-descriere {
-  color: #bbb;
+body[data-bs-theme=dark] #grid-pagina > * h1, body[data-bs-theme=dark] #grid-pagina > * .h1, body[data-bs-theme=dark] #grid-pagina > * h2, body[data-bs-theme=dark] #grid-pagina > * .h2, body[data-bs-theme=dark] #grid-pagina > * h3, body[data-bs-theme=dark] #grid-pagina > * .h3, body[data-bs-theme=dark] #grid-pagina > * h4, body[data-bs-theme=dark] #grid-pagina > * .h4, body[data-bs-theme=dark] #grid-pagina > * h5, body[data-bs-theme=dark] #grid-pagina > * .h5, body[data-bs-theme=dark] #grid-pagina > * h6, body[data-bs-theme=dark] #grid-pagina > * .h6,
+body[data-bs-theme=dark] .placeholder-box h1,
+body[data-bs-theme=dark] .placeholder-box .h1,
+body[data-bs-theme=dark] .placeholder-box h2,
+body[data-bs-theme=dark] .placeholder-box .h2,
+body[data-bs-theme=dark] .placeholder-box h3,
+body[data-bs-theme=dark] .placeholder-box .h3,
+body[data-bs-theme=dark] .placeholder-box h4,
+body[data-bs-theme=dark] .placeholder-box .h4,
+body[data-bs-theme=dark] .placeholder-box h5,
+body[data-bs-theme=dark] .placeholder-box .h5,
+body[data-bs-theme=dark] .placeholder-box h6,
+body[data-bs-theme=dark] .placeholder-box .h6 {
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] #grid-pagina > * p, body[data-bs-theme=dark] #grid-pagina > * span, body[data-bs-theme=dark] #grid-pagina > * b, body[data-bs-theme=dark] #grid-pagina > * strong, body[data-bs-theme=dark] #grid-pagina > * time,
+body[data-bs-theme=dark] .placeholder-box p,
+body[data-bs-theme=dark] .placeholder-box span,
+body[data-bs-theme=dark] .placeholder-box b,
+body[data-bs-theme=dark] .placeholder-box strong,
+body[data-bs-theme=dark] .placeholder-box time {
+  color: #e0e0e0 !important;
+}
+body[data-bs-theme=dark] .filtru-container, body[data-bs-theme=dark] .card, body[data-bs-theme=dark] .produs-single-card {
+  background-color: #1e1e1e !important;
+  border-color: #2d2d2d !important;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3) !important;
+}
+body[data-bs-theme=dark] .filtru-container h1, body[data-bs-theme=dark] .filtru-container .h1, body[data-bs-theme=dark] .filtru-container h2, body[data-bs-theme=dark] .filtru-container .h2, body[data-bs-theme=dark] .filtru-container h3, body[data-bs-theme=dark] .filtru-container .h3, body[data-bs-theme=dark] .filtru-container h4, body[data-bs-theme=dark] .filtru-container .h4, body[data-bs-theme=dark] .filtru-container h5, body[data-bs-theme=dark] .filtru-container .h5, body[data-bs-theme=dark] .filtru-container h6, body[data-bs-theme=dark] .filtru-container .h6, body[data-bs-theme=dark] .card h1, body[data-bs-theme=dark] .card .h1, body[data-bs-theme=dark] .card h2, body[data-bs-theme=dark] .card .h2, body[data-bs-theme=dark] .card h3, body[data-bs-theme=dark] .card .h3, body[data-bs-theme=dark] .card h4, body[data-bs-theme=dark] .card .h4, body[data-bs-theme=dark] .card h5, body[data-bs-theme=dark] .card .h5, body[data-bs-theme=dark] .card h6, body[data-bs-theme=dark] .card .h6, body[data-bs-theme=dark] .produs-single-card h1, body[data-bs-theme=dark] .produs-single-card .h1, body[data-bs-theme=dark] .produs-single-card h2, body[data-bs-theme=dark] .produs-single-card .h2, body[data-bs-theme=dark] .produs-single-card h3, body[data-bs-theme=dark] .produs-single-card .h3, body[data-bs-theme=dark] .produs-single-card h4, body[data-bs-theme=dark] .produs-single-card .h4, body[data-bs-theme=dark] .produs-single-card h5, body[data-bs-theme=dark] .produs-single-card .h5, body[data-bs-theme=dark] .produs-single-card h6, body[data-bs-theme=dark] .produs-single-card .h6 {
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] .filtru-container p, body[data-bs-theme=dark] .filtru-container li, body[data-bs-theme=dark] .filtru-container b, body[data-bs-theme=dark] .filtru-container strong, body[data-bs-theme=dark] .filtru-container span, body[data-bs-theme=dark] .filtru-container .text-muted, body[data-bs-theme=dark] .card p, body[data-bs-theme=dark] .card li, body[data-bs-theme=dark] .card b, body[data-bs-theme=dark] .card strong, body[data-bs-theme=dark] .card span, body[data-bs-theme=dark] .card .text-muted, body[data-bs-theme=dark] .produs-single-card p, body[data-bs-theme=dark] .produs-single-card li, body[data-bs-theme=dark] .produs-single-card b, body[data-bs-theme=dark] .produs-single-card strong, body[data-bs-theme=dark] .produs-single-card span, body[data-bs-theme=dark] .produs-single-card .text-muted {
+  color: #e0e0e0 !important;
+}
+body[data-bs-theme=dark] #video-fundal {
+  filter: brightness(0.35) contrast(1.05);
+}
+body[data-bs-theme=dark] #watermark {
+  opacity: 0.25;
+}
+body[data-bs-theme=dark] #watermark #watermark-item {
+  color: rgba(255, 255, 255, 0.2) !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+body[data-bs-theme=dark] #antet {
+  background-color: #161616 !important;
+  border: 2px solid #33C0F5 !important;
+  border-radius: 1.25rem;
+  margin-bottom: 20px;
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] #antet #nume h1, body[data-bs-theme=dark] #antet h1, body[data-bs-theme=dark] #antet .h1 {
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] #antet #schimba_tema {
+  color: #e0e0e0 !important;
+  text-decoration: none !important;
+}
+body[data-bs-theme=dark] #antet #schimba_tema:hover {
+  color: #33C0F5 !important;
+}
+body[data-bs-theme=dark] #antet #schimba_tema i {
+  color: inherit !important;
+}
+body[data-bs-theme=dark] a {
+  color: #8ec3ef;
+}
+body[data-bs-theme=dark] a:hover {
+  color: rgb(195.6093023256, 223.4651162791, 246.5906976744);
+}
+body[data-bs-theme=dark] input:not([type=checkbox]):not([type=radio]),
+body[data-bs-theme=dark] select,
+body[data-bs-theme=dark] textarea {
+  background-color: #2b2b2b !important;
+  color: #ffffff !important;
+  border-color: #444444 !important;
+}
+body[data-bs-theme=dark] input:not([type=checkbox]):not([type=radio]):focus,
+body[data-bs-theme=dark] select:focus,
+body[data-bs-theme=dark] textarea:focus {
+  border-color: #33C0F5 !important;
+  box-shadow: 0 0 0 0.25rem rgba(51, 192, 245, 0.25) !important;
+}
+body[data-bs-theme=dark] section#promotii,
+body[data-bs-theme=dark] section#anunturi,
+body[data-bs-theme=dark] section#orar,
+body[data-bs-theme=dark] section#retete,
+body[data-bs-theme=dark] section#index-intrebari,
+body[data-bs-theme=dark] section#resurse-utile {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #2d2d2d !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6) !important;
+}
+body[data-bs-theme=dark] section#promotii h1, body[data-bs-theme=dark] section#promotii .h1, body[data-bs-theme=dark] section#promotii h2, body[data-bs-theme=dark] section#promotii .h2, body[data-bs-theme=dark] section#promotii h3, body[data-bs-theme=dark] section#promotii .h3, body[data-bs-theme=dark] section#promotii h4, body[data-bs-theme=dark] section#promotii .h4, body[data-bs-theme=dark] section#promotii h5, body[data-bs-theme=dark] section#promotii .h5, body[data-bs-theme=dark] section#promotii h6, body[data-bs-theme=dark] section#promotii .h6,
+body[data-bs-theme=dark] section#anunturi h1,
+body[data-bs-theme=dark] section#anunturi .h1,
+body[data-bs-theme=dark] section#anunturi h2,
+body[data-bs-theme=dark] section#anunturi .h2,
+body[data-bs-theme=dark] section#anunturi h3,
+body[data-bs-theme=dark] section#anunturi .h3,
+body[data-bs-theme=dark] section#anunturi h4,
+body[data-bs-theme=dark] section#anunturi .h4,
+body[data-bs-theme=dark] section#anunturi h5,
+body[data-bs-theme=dark] section#anunturi .h5,
+body[data-bs-theme=dark] section#anunturi h6,
+body[data-bs-theme=dark] section#anunturi .h6,
+body[data-bs-theme=dark] section#orar h1,
+body[data-bs-theme=dark] section#orar .h1,
+body[data-bs-theme=dark] section#orar h2,
+body[data-bs-theme=dark] section#orar .h2,
+body[data-bs-theme=dark] section#orar h3,
+body[data-bs-theme=dark] section#orar .h3,
+body[data-bs-theme=dark] section#orar h4,
+body[data-bs-theme=dark] section#orar .h4,
+body[data-bs-theme=dark] section#orar h5,
+body[data-bs-theme=dark] section#orar .h5,
+body[data-bs-theme=dark] section#orar h6,
+body[data-bs-theme=dark] section#orar .h6,
+body[data-bs-theme=dark] section#retete h1,
+body[data-bs-theme=dark] section#retete .h1,
+body[data-bs-theme=dark] section#retete h2,
+body[data-bs-theme=dark] section#retete .h2,
+body[data-bs-theme=dark] section#retete h3,
+body[data-bs-theme=dark] section#retete .h3,
+body[data-bs-theme=dark] section#retete h4,
+body[data-bs-theme=dark] section#retete .h4,
+body[data-bs-theme=dark] section#retete h5,
+body[data-bs-theme=dark] section#retete .h5,
+body[data-bs-theme=dark] section#retete h6,
+body[data-bs-theme=dark] section#retete .h6,
+body[data-bs-theme=dark] section#index-intrebari h1,
+body[data-bs-theme=dark] section#index-intrebari .h1,
+body[data-bs-theme=dark] section#index-intrebari h2,
+body[data-bs-theme=dark] section#index-intrebari .h2,
+body[data-bs-theme=dark] section#index-intrebari h3,
+body[data-bs-theme=dark] section#index-intrebari .h3,
+body[data-bs-theme=dark] section#index-intrebari h4,
+body[data-bs-theme=dark] section#index-intrebari .h4,
+body[data-bs-theme=dark] section#index-intrebari h5,
+body[data-bs-theme=dark] section#index-intrebari .h5,
+body[data-bs-theme=dark] section#index-intrebari h6,
+body[data-bs-theme=dark] section#index-intrebari .h6,
+body[data-bs-theme=dark] section#resurse-utile h1,
+body[data-bs-theme=dark] section#resurse-utile .h1,
+body[data-bs-theme=dark] section#resurse-utile h2,
+body[data-bs-theme=dark] section#resurse-utile .h2,
+body[data-bs-theme=dark] section#resurse-utile h3,
+body[data-bs-theme=dark] section#resurse-utile .h3,
+body[data-bs-theme=dark] section#resurse-utile h4,
+body[data-bs-theme=dark] section#resurse-utile .h4,
+body[data-bs-theme=dark] section#resurse-utile h5,
+body[data-bs-theme=dark] section#resurse-utile .h5,
+body[data-bs-theme=dark] section#resurse-utile h6,
+body[data-bs-theme=dark] section#resurse-utile .h6 {
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] section#promotii p, body[data-bs-theme=dark] section#promotii li, body[data-bs-theme=dark] section#promotii time, body[data-bs-theme=dark] section#promotii b, body[data-bs-theme=dark] section#promotii strong, body[data-bs-theme=dark] section#promotii span,
+body[data-bs-theme=dark] section#anunturi p,
+body[data-bs-theme=dark] section#anunturi li,
+body[data-bs-theme=dark] section#anunturi time,
+body[data-bs-theme=dark] section#anunturi b,
+body[data-bs-theme=dark] section#anunturi strong,
+body[data-bs-theme=dark] section#anunturi span,
+body[data-bs-theme=dark] section#orar p,
+body[data-bs-theme=dark] section#orar li,
+body[data-bs-theme=dark] section#orar time,
+body[data-bs-theme=dark] section#orar b,
+body[data-bs-theme=dark] section#orar strong,
+body[data-bs-theme=dark] section#orar span,
+body[data-bs-theme=dark] section#retete p,
+body[data-bs-theme=dark] section#retete li,
+body[data-bs-theme=dark] section#retete time,
+body[data-bs-theme=dark] section#retete b,
+body[data-bs-theme=dark] section#retete strong,
+body[data-bs-theme=dark] section#retete span,
+body[data-bs-theme=dark] section#index-intrebari p,
+body[data-bs-theme=dark] section#index-intrebari li,
+body[data-bs-theme=dark] section#index-intrebari time,
+body[data-bs-theme=dark] section#index-intrebari b,
+body[data-bs-theme=dark] section#index-intrebari strong,
+body[data-bs-theme=dark] section#index-intrebari span,
+body[data-bs-theme=dark] section#resurse-utile p,
+body[data-bs-theme=dark] section#resurse-utile li,
+body[data-bs-theme=dark] section#resurse-utile time,
+body[data-bs-theme=dark] section#resurse-utile b,
+body[data-bs-theme=dark] section#resurse-utile strong,
+body[data-bs-theme=dark] section#resurse-utile span {
+  color: #e0e0e0 !important;
+}
+body[data-bs-theme=dark] table {
+  color: #e0e0e0 !important;
+  border-color: #444444 !important;
+}
+body[data-bs-theme=dark] table th {
+  background-color: #222222 !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #555555 !important;
+}
+body[data-bs-theme=dark] table td {
+  background-color: #1e1e1e !important;
+  border-color: #444444 !important;
+}
+body[data-bs-theme=dark] table tr:nth-child(even) td {
+  background-color: #2b2b2b !important;
+}
+body[data-bs-theme=dark] .taburi-iframe a {
+  background-color: #2b2b2b !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #444444 !important;
+}
+body[data-bs-theme=dark] .taburi-iframe a:hover, body[data-bs-theme=dark] .taburi-iframe a:focus, body[data-bs-theme=dark] .taburi-iframe a.active {
+  background-color: #3B51A5 !important;
+  color: #ffffff !important;
+  border-color: #3B51A5 !important;
+}
+body[data-bs-theme=dark] .container-iframe {
+  background-color: transparent !important;
+  border-color: #444444 !important;
+}
+body[data-bs-theme=dark] #subsol {
+  background-color: #161616 !important;
+  color: #d0d0d0 !important;
+  border: 2px solid #33C0F5 !important;
+  border-radius: 1.25rem;
+  margin-top: 25px;
+}
+body[data-bs-theme=dark] #subsol h1, body[data-bs-theme=dark] #subsol .h1, body[data-bs-theme=dark] #subsol h2, body[data-bs-theme=dark] #subsol .h2, body[data-bs-theme=dark] #subsol h3, body[data-bs-theme=dark] #subsol .h3 {
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] #subsol #triunghi {
+  background-color: #2b2b2b !important;
+  color: #F5C333 !important;
+  border: 1px solid #2d2d2d;
+}
+body[data-bs-theme=dark] #subsol #triunghi:hover {
+  background-color: #444444 !important;
 }

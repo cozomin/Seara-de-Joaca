@@ -103,7 +103,10 @@ ul.meniu a {
   text-decoration: none;
   color: inherit;
   display: inline-block;
+  width: 100%;
+  height: 100%;
   font-weight: bold;
+  padding-left: 20px;
 }
 ul.meniu a:hover {
   color: #3359f3 !important;
@@ -121,9 +124,6 @@ ul.meniu a:hover {
   .text-icon {
     display: none;
   }
-  .meniu > li {
-    padding: 0 !important;
-  }
   .imag-icon {
     display: flex !important;
     justify-content: center !important;
@@ -133,14 +133,18 @@ ul.meniu a:hover {
   }
   .imag-icon a,
   .imag-icon span {
-    display: inline-block !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     width: auto !important;
+    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: normal !important;
+    line-height: 1 !important;
+    text-align: center !important;
   }
-  ul.meniu {
-    padding-left: 0;
+  ul.meniu li {
+    text-align: center;
   }
 }
 @keyframes animatie_submeniu {
@@ -165,4 +169,38 @@ ul.meniu a:hover {
     left: 0;
     opacity: 1;
   }
+}
+body[data-bs-theme=dark] ul.meniu li {
+  background-color: #2b2b2b;
+  border-color: #444444;
+  color: #e0e0e0;
+}
+body[data-bs-theme=dark] ul.meniu li a {
+  color: #e0e0e0;
+}
+body[data-bs-theme=dark] ul.meniu li a:hover {
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] ul.meniu > li:hover {
+  background-color: #3B51A5;
+  color: #ffffff;
+  border-color: #33C0F5;
+  box-shadow: inset 0 0 15px rgba(51, 192, 245, 0.4);
+}
+body[data-bs-theme=dark] ul.meniu > li:hover a:hover {
+  color: #ffffff !important;
+}
+body[data-bs-theme=dark] ul.meniu > li:hover li a::before {
+  color: #FFCD00;
+}
+body[data-bs-theme=dark] ul.meniu > li > ul > li {
+  background-color: #1e1e1e;
+  border-color: #333333;
+}
+body[data-bs-theme=dark] ul.meniu > li > ul > li:hover {
+  background-color: #33C0F5;
+  color: #121212;
+}
+body[data-bs-theme=dark] ul.meniu > li > ul > li:hover a {
+  color: #121212 !important;
 }
